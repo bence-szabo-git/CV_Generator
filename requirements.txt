@@ -1,0 +1,8 @@
+# AI and API Interaction
+huggingface-hub>=0.20.0
+
+# Data Parsing
+PyYAML>=6.0.1
+
+# Optional: For better data validation (prevents AI hallucinations)
+pydantic>=2.0.0

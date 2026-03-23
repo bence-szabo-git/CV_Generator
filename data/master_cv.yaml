@@ -1,0 +1,14 @@
+name: "Alex Developer"
+email: "alex@example.com"
+experience:
+  - company: "CloudScale Inc"
+    role: "Software Engineer"
+    bullets:
+      - "Developed a real-time data pipeline using Python and Kafka."
+      - "Optimized SQL queries, reducing latency by 40%."
+      - "Led a team of 4 to migrate legacy apps to Docker."
+  - company: "WebFlow"
+    role: "Junior Dev"
+    bullets:
+      - "Built responsive frontend components in React."
+      - "Automated testing with Jest, increasing coverage to 80%."
