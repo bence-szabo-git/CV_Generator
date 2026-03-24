@@ -1,5 +1,5 @@
 {
-  "tailored_summary": "Dynamic Backend Engineer with experience in Python and infrastructure, seeking to leverage skills in Docker and database optimization.",
+  "tailored_summary": "Experienced Backend Engineer with a strong background in Python and a proven track record in managing logistics and financial operations.",
   "experience": [
     {
       "company": "VIBE Events Management Srl",
@@ -7,21 +7,30 @@
       "logo_path": "data/logos/vibe.png",
       "roles": [
         {
-          "role": "Manager",
-          "location": "Târgu Mureș, Romania",
+          "role": "Logistics Operations Manager",
+          "location": "Târgu Mureş, Romania",
           "dates": "06/25 - 07/25",
           "bullets": [
-            "Managed infrastructure and optimized database performance for large-scale events",
-            "Implemented Docker containers to streamline event management processes"
+            "Directed a team of 20 drivers to execute 130+ time-sensitive transportations.",
+            "Managed the logistics budget to support a 32% growth in attendance while maintaining cost neutrality."
           ]
         },
         {
-          "role": "Assistant",
+          "role": "Administrative and Financial Assistant",
           "location": "Cluj-Napoca, Romania",
           "dates": "03/24 - 09/24",
           "bullets": [
-            "Assisted in backend development and infrastructure setup",
-            "Optimized database queries for faster event data retrieval"
+            "Oversaw end-to-end hospitality logistics for 500+ event staff and performers, fulfilling 70+ unique performer requests with 100% accuracy.",
+            "Co-authored 2+ EU funding applications and compiled 3 organizational reports to support strategic planning."
+          ]
+        },
+        {
+          "role": "Financial Intern",
+          "location": "Cluj-Napoca, Romania",
+          "dates": "03/23 - 09/23",
+          "bullets": [
+            "Administered financial reporting and budget tracking for a peak operational month.",
+            "Collaborated with a team of fellow interns to develop and pitch new marketing initiatives."
           ]
         }
       ]
@@ -46,6 +55,38 @@
         "Automated market data extraction via 3 custom Python web scrapers",
         "Analyzed 181k+ entries to model trends in the Romanian book market",
         "Won 2nd Place by presenting data-driven consumer behavior insights"
+      ]
+    },
+    {
+      "event": "MCC Running Club Cluj-Napoca",
+      "section": "Students of MCC gathering regularly for running, participating on marathons and organising educational events such as Book & Movie Nights",
+      "role": "Leader of Student Project",
+      "location": "Cluj-Napoca, Romania",
+      "dates": "11/24 - 08/25",
+      "bullets": [
+        "Coordinated a 4-person organizing team to execute a year-long training program for a team of 26 students",
+        "Led the team through 2900 km of rigorous training, culminating in the successful completion of three international events, including a full marathon"
+      ]
+    },
+    {
+      "event": "Kielce University of Technology",
+      "section": "Poland's largest technical university in the Świętokrzyskie region, specializing in engineering and technology programs",
+      "role": "Exchange Student",
+      "location": "Kielce, Poland",
+      "dates": "09/23 - 02/24",
+      "bullets": [
+        "Actively participated in multiple discussions on economic and geopolitical trends at the CEE Summit: Europe's Rising Power",
+        "Achieved top marks in all subjects throughout the international exchange semester"
+      ]
+    },
+    {
+      "event": "Maastricht University, Data Visualisation & Story Telling",
+      "section": "Maastricht University: A Dutch research university renowned for its international focus and unique problem-based learning model",
+      "role": "Summer School Student",
+      "location": "Maastricht, Netherlands",
+      "dates": "07/25 - 07/25",
+      "bullets": [
+        "Co-developed and presented a data-driven solution to business case studies in the industries of healthcare and retail"
       ]
     }
   ],

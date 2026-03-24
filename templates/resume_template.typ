@@ -12,7 +12,7 @@
 #let teal = rgb("#1a7a7a")
 
 // --- Page Setup ---
-#set page(margin: (x: 1.5cm, y: 1.5cm), paper: "a4")
+#set page(margin: (top: 1cm, bottom: 1.5cm, x: 1.2cm), paper: "a4")
 #set text(font: "New Computer Modern", size: 10pt, fill: rgb("#222222"))
 #set par(leading: 0.55em)
 
@@ -27,22 +27,30 @@
 #let section-heading(title) = [
   #text(size: 13pt, weight: "bold", fill: navy)[#title]
   #v(-6pt)
-  #line(length: 100%, stroke: 1pt + teal)
+  #line(length: 95%, stroke: 1pt + teal)
   #v(4pt)
+]
+
+#let section-heading-sm(title) = [
+  #text(size: 12pt, weight: "bold", fill: navy)[#title]
+  #v(-6pt)
+  #line(length: 95%, stroke: 1pt + teal)
+  #v(2pt)
 ]
 
 #let experience-entry(dates, location, role, role-color, bullets) = [
   #grid(
-    columns: (2.8cm, 1fr),
-    gutter: 8pt,
+    columns: (2.2cm, 1fr),
+    gutter: 1.5pt,
     align(left)[
       #text(size: 8.5pt, fill: rgb("#555555"))[#dates #linebreak() #location]
     ],
     align(left)[
       #text(weight: "bold", fill: role-color)[● #role]
-      #v(2pt)
-      #for bullet in bullets [
-        - #bullet
+      #pad(left: 0.4cm)[
+        #for bullet in bullets [
+          - #bullet
+        ]
       ]
     ]
   )
@@ -62,13 +70,13 @@
       #linebreak()
       #text(size: 8.5pt)[#dates]
     ],
-    align(right)[
+    align(right + horizon)[
       #if logo != "" [
         #image(logo, width: 1.1cm)
       ]
     ]
   )
-  #v(6pt)
+  #v(2pt)
 ]
 
 
@@ -79,34 +87,37 @@
 #let c = data.contact
 
 #grid(
-  columns: (13cm, 5cm),
+  columns: (14cm, 4cm),
   gutter: 0pt,
   align(left)[
     #text(size: 28pt, weight: "bold", fill: navy)[#c.name]
     #v(6pt)
     #grid(
-      columns: (6.5cm, 6.5cm),
-      gutter: 4pt,
-      [✉ #link("mailto:" + c.email)[#c.email]],
-      [✆ #c.phone],
-      [in #link("https://" + c.linkedin)[#c.linkedin]],
-      [⊕ #c.nationality],
+      columns: (1fr, 1fr, 1fr, 1fr),
+      gutter: 6pt,
+      align(left)[✉ #link("mailto:" + c.email)[#text(size: 8.5pt)[#c.email]]],
+      align(left)[☎ #text(size: 8.5pt)[#c.phone]],
+      align(left)[@ #link("https://" + c.linkedin)[#text(size: 8.5pt)[LinkedIn]]],
+      align(left)[◆ #text(size: 8.5pt)[#c.nationality]],
     )
   ],
   align(right)[
     #if c.keys().contains("photo_path") and c.photo_path != "" [
       #box(
-        width: 3.5cm,
-        height: 3.5cm,
-        image(c.photo_path, width: 3.5cm, height: 3.5cm, fit: "cover")
+        width: 3.2cm,
+        height: 3.2cm,
+        clip: true,
+        image(c.photo_path, width: 3.2cm, height: 3.2cm, fit: "cover"),
+        stroke: none,
+        radius: 50%,
       )
     ]
   ]
 )
 
-#v(8pt)
+#v(3pt)
 #line(length: 100%, stroke: 0.5pt + rgb("#cccccc"))
-#v(10pt)
+#v(6pt)
 
 
 // ============================================================
@@ -145,27 +156,29 @@
       ]
     ]
     
+    #v(4pt)
     #section-heading("Extracurricular Experience")
     #for ex in data.extracurricular [
       #grid(
-        columns: (2.8cm, 1fr),
-        gutter: 8pt,
+        columns: (2.2cm, 1fr),
+        gutter: 1.5pt,
         align(left)[
           #text(size: 8.5pt, fill: rgb("#555555"))[#ex.dates #linebreak() #ex.location]
         ],
         align(left)[
-          #text(weight: "bold", fill: teal)[#ex.role]
-          #linebreak()
           #text(weight: "bold")[#ex.event]
           #linebreak()
-          #text(style: "italic", size: 9pt)[#ex.section]
-          #v(2pt)
-          #for bullet in ex.bullets [
-            - #bullet
+          #text(style: "italic", size: 9pt, fill: rgb("#555555"))[#ex.section]
+          #linebreak()
+          #text(weight: "bold", fill: navy)[● #ex.role]
+          #pad(left: 0.4cm)[
+            #for bullet in ex.bullets [
+              - #bullet
+            ]
           ]
         ]
       )
-      #v(6pt)
+      #v(4pt)
     ]
   ],
 
@@ -174,34 +187,35 @@
 
   // === RIGHT COLUMN CONTENT (no block wrapper!) ===
   [
-    #section-heading("Summary")
+    #set text(size: 9pt)
+    #section-heading-sm("Summary")
     #text(size: 9.5pt)[#data.tailored_summary]
-    #v(10pt)
+    #v(4pt)
 
-    #section-heading("Education")
+    #section-heading-sm("Education")
     #for ed in data.education [
       #education-entry(ed.degree, ed.university, ed.location, ed.dates, ed.at("logo_path", default: ""))
     ]
 
-    #section-heading("Languages")
+    #section-heading-sm("Languages")
     #for lang in data.languages [
       #text(weight: "bold")[#lang.name: ]
       #text[#lang.level]
       #linebreak()
     ]
-    #v(8pt)
+    #v(4pt)
 
-    #section-heading("Skills")
+    #section-heading-sm("Skills")
     #for (category, skills) in data.skills.pairs() [
       #text(weight: "bold")[#category]
       #linebreak()
       #text(size: 9pt)[#skills]
-      #v(4pt)
+      #v(2pt)
     ]
 
     #if data.keys().contains("awards") and data.awards.len() > 0 [
       #v(4pt)
-      #section-heading("Awards & Scholarships")
+      #section-heading-sm("Awards & Scholarships")
       #for award in data.awards [
         - #award
       ]
