@@ -1,5 +1,5 @@
 // ============================================================
-// resume_template.typ - FINAL REBUILD with proper #grid()
+// resume_template.typ - REBUILT
 // Data is injected via resume_data.json (written by tailor.py)
 // Compile with: typst compile --root . templates/resume_template.typ output/tailored_cv.pdf
 // ============================================================
@@ -111,19 +111,18 @@
 
 // ============================================================
 // ZONE 2: TWO-COLUMN BODY
-// Using explicit grid with NO block() wrappers
-// Left: 11.16cm (Professional + Extracurricular)
-// Gap: 0.54cm
-// Right: 6.3cm (Summary + Education + Languages + Skills + Awards)
+// Using absolute widths: Left 11.16cm, Gap 0.54cm, Right 6.3cm
+// NO block() wrappers — use raw [] content cells instead
 // ============================================================
 
 #grid(
   columns: (11.16cm, 0.54cm, 6.3cm),
   gutter: 0pt,
 
-  // === LEFT COLUMN CONTENT (no block wrapper!) ===
+  // ===== LEFT COLUMN (Professional + Extracurricular) =====
   [
     #section-heading("Professional Experience")
+
     #for job in data.experience [
       #grid(
         columns: (1.2cm, 1fr),
@@ -141,11 +140,18 @@
       )
       #v(4pt)
       #for role in job.roles [
-        #experience-entry(role.dates, role.location, role.role, navy, role.bullets)
+        #experience-entry(
+          role.dates,
+          role.location,
+          role.role,
+          navy,
+          role.bullets
+        )
       ]
     ]
-    
+
     #section-heading("Extracurricular Experience")
+
     #for ex in data.extracurricular [
       #grid(
         columns: (2.8cm, 1fr),
@@ -169,10 +175,10 @@
     ]
   ],
 
-  // === SPACER ===
+  // ===== GAP COLUMN =====
   [],
 
-  // === RIGHT COLUMN CONTENT (no block wrapper!) ===
+  // ===== RIGHT COLUMN (Education, Languages, Skills, Awards) =====
   [
     #section-heading("Summary")
     #text(size: 9.5pt)[#data.tailored_summary]
@@ -180,7 +186,13 @@
 
     #section-heading("Education")
     #for ed in data.education [
-      #education-entry(ed.degree, ed.university, ed.location, ed.dates, ed.at("logo_path", default: ""))
+      #education-entry(
+        ed.degree,
+        ed.university,
+        ed.location,
+        ed.dates,
+        ed.at("logo_path", default: "")
+      )
     ]
 
     #section-heading("Languages")
