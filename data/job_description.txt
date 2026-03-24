@@ -1,2 +1,56 @@
-We are looking for a Backend Engineer comfortable with Python and infrastructure. 
-Experience with Docker and database optimization is a huge plus.
+About the job
+If you’ve worn a pair of glasses, we’ve already met. 
+
+[please select only the brands’ cluster relevant to your audience] We are a global leader in the design, manufacture, and distribution of ophthalmic lenses, frames, and sunglasses. We offer our industry stakeholders in over 150 countries access to a global platform of high-quality vision care products [such as the Essilor brand, with Varilux, Crizal, Eyezen, Stellest and Transitions ], iconic brands that consumers love [such as Ray-Ban, Oakley, Persol, Oliver Peoples, Vogue Eyewear and Costa ], as well as a network that offers consumers high-quality vision care and best-in-class shopping experiences [such as Sunglass Hut, LensCrafters, Salmoiraghi & Viganò and the GrandVision network ], and leading e-commerce platforms.
+
+Join our global community of over 190,000 dedicated employees around the world in driving the transformation of the eyewear and eyecare industry.
+
+Discover more by following us on LinkedIn!
+
+ Your #FutureInSight with EssilorLuxottica 
+
+Are you willing to pioneer new frontiers, foster inclusivity and collaboration, embrace agility, ignite passion, and make a positive impact on the world?
+
+Join us in redefining the boundaries of what’s possible!
+
+ Your Role 
+
+We are looking for a Junior Data Scientist who will support our manufacturing operations with insights gained from analysing shop floor data and that will be part of a data science team on development projects, typically involving large, complex data sets.
+
+The candidate will perform all activities associated with the design, prototype, and development of learning models and act as a facilitator between the technical and the shopfloor team, collecting information and supporting the implementation and maintenance of data science solutions. He/She will join the Business Process Innovation team whose purpose is to guide the innovation inside Luxottica manufacturing all over the world.
+
+Main Responsibilities
+
+ Support the Data Science team to identify new opportunities to drive business solutions forward. 
+ Support the shopfloor team on current and future AI solutions. 
+ Explore, mine and analyse data from company and internal databases. 
+ Assess the effectiveness and accuracy of new data sources and data gathering techniques. 
+ Co-develop custom data models and algorithms to apply to data sets. 
+ Use predictive modelling to increase process quality. 
+
+Main Requirements
+
+ Strong knowledge of a variety of machine learning techniques (deep learning, graph neural networks, tree-based methods, SVM, PLS, PCA, clustering, etc.) and their real-world advantages/drawbacks. 
+ Knowledge of Computer Vision techniques (image processing) and main algorithms (Convolutional Neural Networks, Autoencoders, …) 
+ Strong knowledge of statistical computer languages (Python, SQL). Experience with PyTorch is a plus. 
+ Proven Experience with Azure and Databricks Environment is a plus. 
+ Knowledge of advanced statistical techniques and concepts (regression, properties of distributions, statistical tests and proper usage, etc.) and experience with applications. 
+ Experience working with large and complex datasets from manufacturing or industrial environments is a plus. 
+ Experience working with BI software (Power BI) is a plus. 
+
+What’s In It For You
+
+In EssilorLuxottica, you are not defined just by your job title. Each career adventure is unique, but have a glimpse of the benefits and perks you can have by choosing us.
+
+ Access to our cutting-edge learning platform, Leonardo, and personalized development programs to help you grow professionally and personally. 
+ Access special offers for employees on a vast range of eyewear, eyecare products, and fashion apparel, so you can enjoy our world-class brands firsthand. 
+ Expense reimbursement provided 
+ Enjoy flexible work conditions, health insurance coverage, free canteen & free access to the company's gym 
+
+Recruiting process
+
+Our recruitment process may vary; If you are selected, you will be contacted by our recruiters to guide you through the specific steps for your application.
+
+ Our Diversity, Equity and Inclusion commitment 
+
+We are committed to creating an inclusive environment for all employees. We celebrate diversity and provide equal opportunities to all, regardless of race, gender, ethnicity, religion, disability, sexual orientation, or any other characteristic that makes us unique

@@ -1,8 +1,8 @@
 {
-  "tailored_summary": "Experienced Backend Engineer with a strong background in Python and a proven track record in managing logistics and financial operations.",
+  "tailored_summary": "Master’s student in AI & Analytics with a background in logistics operations, particularly in managing high-volume resource allocation and overseeing fleet scheduling for time-sensitive projects. Experienced in applying advanced analytical frameworks to optimize operations and drive strategic growth in dynamic environments.",
   "experience": [
     {
-      "company": "VIBE Events Management Srl",
+      "company": "VIBE Events Management",
       "description": "VIBE Festival is the biggest Hungarian festival in Romania, bringing music, culture, and community by the Mureș River.",
       "logo_path": "data/logos/vibe.png",
       "roles": [
@@ -14,35 +14,18 @@
             "Directed a team of 20 drivers to execute 130+ time-sensitive transportations.",
             "Managed the logistics budget to support a 32% growth in attendance while maintaining cost neutrality."
           ]
-        },
-        {
-          "role": "Administrative and Financial Assistant",
-          "location": "Cluj-Napoca, Romania",
-          "dates": "03/24 - 09/24",
-          "bullets": [
-            "Oversaw end-to-end hospitality logistics for 500+ event staff and performers, fulfilling 70+ unique performer requests with 100% accuracy.",
-            "Co-authored 2+ EU funding applications and compiled 3 organizational reports to support strategic planning."
-          ]
-        },
-        {
-          "role": "Financial Intern",
-          "location": "Cluj-Napoca, Romania",
-          "dates": "03/23 - 09/23",
-          "bullets": [
-            "Administered financial reporting and budget tracking for a peak operational month.",
-            "Collaborated with a team of fellow interns to develop and pitch new marketing initiatives."
-          ]
         }
       ]
     }
   ],
   "contact": {
-    "name": "FIRSTNAME LASTNAME",
-    "email": "email@email.com",
-    "phone": "+40712 123 123",
-    "linkedin": "linkedin.com/in/link",
+    "name": "David-Bence Szabo",
+    "email": "bence.szabo@esmt.berlin",
+    "phone": "+40769 849 606",
+    "linkedin": "linkedin.com/in/david-bence-szabo/",
     "nationality": "Romanian, Hungarian",
-    "photo_path": "data/picture.png"
+    "photo_path": "data/picture.png",
+    "linkedin_slug": "david-bence-szabo"
   },
   "extracurricular": [
     {

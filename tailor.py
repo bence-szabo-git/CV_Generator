@@ -174,6 +174,15 @@ def build_resume_data(tailored: TailoredOutput, master_cv: dict) -> dict:
 
     contact = master_cv.get("contact", {})
 
+    # --- ADDED: Extract the LinkedIn slug here ---
+    full_linkedin = contact.get("linkedin", "")
+    if full_linkedin:
+        # Splits by '/' and takes the last item, creating the slug
+        contact["linkedin_slug"] = full_linkedin.strip('/').split('/')[-1]
+    else:
+        contact["linkedin_slug"] = ""
+    # ---------------------------------------------
+    
     education = master_cv.get("education", [])
 
     # Restore logo_path from master_cv — never trust AI output for file paths

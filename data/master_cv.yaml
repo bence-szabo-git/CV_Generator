@@ -6,17 +6,17 @@
 # =============================================================
 
 contact:
-  name: "FIRSTNAME LASTNAME"
-  email: "email@email.com"
-  phone: "+40712 123 123"
-  linkedin: "linkedin.com/in/link"
+  name: "David-Bence Szabo"
+  email: "bence.szabo@esmt.berlin"
+  phone: "+40769 849 606"
+  linkedin: "linkedin.com/in/david-bence-szabo/"
   nationality: "Romanian, Hungarian"
   photo_path: "data/picture.png"
 
 # ------------------------------------------------------------------
 # Base summary — AI will tailor this per job application
 # ------------------------------------------------------------------
-base_summary: "Short Summary of Me..."
+base_summary: "Master’s student in AI & Analytics with a background in end-to-end logistics operations and a proven track record in managing high volume resource allocation. Experienced in overseeing  fleet scheduling and multi stakeholder coordination for time-sensitive projects. Driven to apply advanced analytical frameworks to tackle operational complexities and identify strategic growth opportunities within dynamic global environments."
 
 # ------------------------------------------------------------------
 # Experience
@@ -25,7 +25,7 @@ base_summary: "Short Summary of Me..."
 # ------------------------------------------------------------------
 
 experience:
-  - company: "VIBE Events Management Srl"
+  - company: "VIBE Events Management"
     description: "VIBE Festival is the biggest Hungarian festival in Romania, bringing music, culture, and community by the Mureș River."
     logo_path: "data/logos/vibe.png"
     roles:
