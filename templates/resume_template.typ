@@ -158,8 +158,8 @@
     ]
     
     #v(1pt)
-    #section-heading("Extracurricular Experience")
-    #for ex in data.extracurricular [
+    #section-heading("Academic Experience")
+    #for ex in data.academic [
       #grid(
         columns: (2.2cm, 1fr),
         gutter: 1.5pt,

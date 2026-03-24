@@ -11,7 +11,7 @@ contact:
   phone: "+40769 849 606"
   linkedin: "linkedin.com/in/david-bence-szabo/"
   nationality: "Romanian, Hungarian"
-  photo_path: "data/picture.png"
+  photo_path: "picture.png"
 
 # ------------------------------------------------------------------
 # Base summary — AI will tailor this per job application
@@ -32,50 +32,96 @@ experience:
       - role: "Logistics Operations Manager"
         location: "Târgu Mureş, Romania"
         dates: "06/25 - 07/25"
+        team_size: "[20 volunteer drivers + 2 secondary coordinators + 1 external logistics company + 5 stage coordinators]"
+        technical_depth: "[medium (logistics operations, resource allocation, stakeholder cooperation, budget management, scheduling, fast-paced problem-solving)]"
+        business_area: "[logistics, operations, event management, transportation]"
+        key_outcomes: "[optimized 130+ time-sensitive transportations, supported 32% attendance growth by robust logistics management, minimized costs through strategic budget oversight, maintained seamless coordination across 4 key stakeholder groups, recorded every transportation in a spreadsheet for real-time tracking and post-event analysis]"
+        technologies: "[['Excel', 'Google Sheets']]"
         bullets:
           - "Directed a team of 20 drivers to execute 130+ time-sensitive transportations."
           - "Managed the logistics budget to support a 32% growth in attendance while maintaining cost neutrality."
       - role: "Administrative and Financial Assistant"
         location: "Cluj-Napoca, Romania"
         dates: "03/24 - 09/24"
+        team_size: "[5 colleagues in the administrative team]"
+        technical_depth: "[low (administrative support, financial reporting, hospitality logistics)]"
+        business_area: "[administration, finance, hospitality]"
+        key_outcomes: "[fulfilled 70+ transportation requests with 100% accuracy, co-authored 2+ funding applications, compiled 3 organizational reports to support strategic planning]"
+        technologies: "[['Excel', 'Word', 'WinMentor', 'Google Workspace', 'email communication'']]"
         bullets:
           - "Oversaw end-to-end hospitality logistics for 500+ event staff and performers, fulfilling 70+ unique performer requests with 100% accuracy."
           - "Co-authored 2+ EU funding applications and compiled 3 organizational reports to support strategic planning."
       - role: "Financial Intern"
         location: "Cluj-Napoca, Romania"
         dates: "03/23 - 09/23"
+        team_size: "[3 interns, 1 supervisor from finance team, 3 finance team members]"
+        technical_depth: "[low (financial reporting, budget tracking, marketing collaboration)]"
+        business_area: "[finance, reporting]"
+        key_outcomes: "[administered financial reporting, pitched marketing initiatives]"
+        technologies: "[['Excel', 'Word']]"
         bullets:
           - "Administered financial reporting and budget tracking for a peak operational month."
           - "Collaborated with a team of fellow interns to develop and pitch new marketing initiatives."
 
 # ------------------------------------------------------------------
-# Extracurricular — structure unchanged, no logo needed
+# Academic — structure unchanged, no logo needed
 # ------------------------------------------------------------------
-extracurricular:
+academic:
   - event: "28th Transylvanian Students' Scientific Conference"
     section: "Section of Business and Economics III: Entrepreneurship and Information Management"
     role: "Awarded Speaker II. Place"
     location: "Cluj-Napoca, Romania"
     dates: "05/25 - 05/25"
+    team_size: "[Add your team size here, e.g., individual or 1]"
+    technical_depth: "[Add technical depth, e.g., medium (Python, data analysis)]"
+    business_area: "[Add business area, e.g., research, data science]"
+    key_outcomes: "[Add key outcomes, e.g., won 2nd place, analyzed 181k entries]"
+    technologies: "[Add technologies used, e.g., ['Python', 'web scraping']]"
+    keywords: "[Add keywords from description, e.g., ['Python', 'data analysis', 'market research']]"
     bullets:
       - "Automated market data extraction via 3 custom Python web scrapers"
       - "Analyzed 181k+ entries to model trends in the Romanian book market"
       - "Won 2nd Place by presenting data-driven consumer behavior insights"
   
-  - event: "MCC Running Club Cluj-Napoca"
-    section: "Students of MCC gathering regularly for running, participating on marathons and organising educational events such as Book & Movie Nights"
-    role: "Leader of Student Project"
-    location: "Cluj-Napoca, Romania"
-    dates: "11/24 - 08/25"
-    bullets:
-      - "Coordinated a 4-person organizing team to execute a year-long training program for a team of 26 students"
-      - "Led the team through 2900 km of rigorous training, culminating in the successful completion of three international events, including a full marathon"
+  # - event: "MCC Running Club Cluj-Napoca"
+  #   section: "Students of MCC gathering regularly for running, participating on marathons and organising educational events such as Book & Movie Nights"
+  #   role: "Leader of Student Project"
+  #   location: "Cluj-Napoca, Romania"
+  #   dates: "11/24 - 08/25"
+  #   team_size: "[Add your team size here, e.g., 4 organizers + 26 participants]"
+  #   technical_depth: "[Add technical depth, e.g., low (leadership, organization)]"
+  #   business_area: "[Add business area, e.g., sports, event management]"
+  #   key_outcomes: "[Add key outcomes, e.g., completed 2900 km training, 3 international events]"
+  #   technologies: "[Add technologies used, e.g., [] or ['training apps']]"
+  #   keywords: "[Add keywords from description, e.g., ['leadership', 'team coordination', 'marathon']]"
+  #   bullets:
+  #     - "Coordinated a 4-person organizing team to execute a year-long training program for a team of 26 students"
+  #     - "Led the team through 2900 km of rigorous training, culminating in the successful completion of three international events, including a full marathon"
   
+  - event: "International Experience"
+    section: "Add section here"
+    role: "Add role here"
+    location: "Add location here"
+    dates: "Add dates here"
+    team_size: "[Add your team size here]"
+    technical_depth: "[Add technical depth]"
+    business_area: "[Add business area]"
+    key_outcomes: "[Add key outcomes]"
+    technologies: "[Add technologies used]"
+    keywords: "[Add keywords]"
+    bullets:
+      - "Add bullet here"
   - event: "Kielce University of Technology"
     section: "Poland's largest technical university in the Świętokrzyskie region, specializing in engineering and technology programs"
     role: "Exchange Student"
     location: "Kielce, Poland"
     dates: "09/23 - 02/24"
+    team_size: "[Add your team size here, e.g., individual]"
+    technical_depth: "[Add technical depth, e.g., medium (academic exchange)]"
+    business_area: "[Add business area, e.g., education, international studies]"
+    key_outcomes: "[Add key outcomes, e.g., top marks in all subjects, participated in CEE Summit]"
+    technologies: "[Add technologies used, e.g., []]"
+    keywords: "[Add keywords from description, e.g., ['academic exchange', 'CEE Summit', 'geopolitical trends']]"
     bullets:
       - "Actively participated in multiple discussions on economic and geopolitical trends at the CEE Summit: Europe's Rising Power"
       - "Achieved top marks in all subjects throughout the international exchange semester"
@@ -85,6 +131,12 @@ extracurricular:
     role: "Summer School Student"
     location: "Maastricht, Netherlands"
     dates: "07/25 - 07/25"
+    team_size: "[Add your team size here, e.g., individual or class size]"
+    technical_depth: "[Add technical depth, e.g., medium (data visualization)]"
+    business_area: "[Add business area, e.g., education, data science]"
+    key_outcomes: "[Add key outcomes, e.g., completed summer school, learned data storytelling]"
+    technologies: "[Add technologies used, e.g., ['Tableau', 'Python']]"
+    keywords: "[Add keywords from description, e.g., ['data visualization', 'storytelling', 'problem-based learning']]"
     bullets:
       - "Co-developed and presented a data-driven solution to business case studies in the industries of healthcare and retail"
 
