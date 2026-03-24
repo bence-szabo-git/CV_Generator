@@ -1,8 +1,8 @@
-# AI and API Interaction
+# AI and API interaction
 huggingface-hub>=0.20.0
 
-# Data Parsing
+# Data parsing
 PyYAML>=6.0.1
 
-# Optional: For better data validation (prevents AI hallucinations)
+# Data validation — catches malformed AI output before PDF generation
 pydantic>=2.0.0
