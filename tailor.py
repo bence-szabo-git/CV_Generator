@@ -29,9 +29,9 @@ SHORTEN_INTERNATIONAL_EXPERIENCE = True
 INTERNATIONAL_FALLBACK_DETAIL = "Participated in cross-border academic programs while enhancing analytical and communication competence."
 
 # --- AI Client ---
-HF_TOKEN = os.getenv("LLM_API_KEY")
+HF_TOKEN = os.getenv("LLM_API_KEY2")
 if not HF_TOKEN:
-    raise ValueError("LLM_API_KEY not found. Ensure it is set in Codespace Secrets.")
+    raise ValueError("LLM_API_KEY2 not found. Ensure it is set in Codespace Secrets.")
 
 client = InferenceClient(api_key=HF_TOKEN)
 
@@ -195,7 +195,9 @@ def tailor_cv(master_cv: dict, job_description: str) -> TailoredOutput | None:
                 "- Prefer reordering bullets by relevance over heavy rephrasing.\n"
                 "- Use keywords from the job description that already appear in the CV bullets.\n"
                 "- For academic details, reword the existing detail to emphasize job-relevant aspects, or use the original if no clear connection exists.\n"
-                "- For academic entries, tailor the technologies, skills, and personal_development fields to better match the job description by reordering or emphasizing relevant items. If unsure, keep the original lists/strings.\n\n"
+                "- For academic entries, tailor the technologies, skills, and personal_development fields to better match the job description by reordering or emphasizing relevant items. If unsure, keep the original lists/strings.\n"
+                "- For tailored_summary, do not completely reuse the same sentences verbatim from base_summary; preserve some important elements while rewriting with new wording, structure and synonyms while keeping meaning identical.\n"
+                "- For tailored_professional and tailored_academic together, ensure the serialized total character count does not exceed 1458 characters. If it would exceed, shorten wording and trim verbosity in those sections only, preserving factual integrity.\n\n"
                 "GOOD EXAMPLE:\n"
                 "Original bullet: 'Directed a team of 20 drivers to execute 130+ time-sensitive transportations.'\n"
                 "Tailored bullet: 'Directed 20-driver logistical operations for 130+ time-sensitive transports, applying data-connected scheduling and real-time delivery tracking to meet high-value procurement timelines.'\n\n"
@@ -221,9 +223,10 @@ MASTER CV DATA:
 {json.dumps(ai_input, ensure_ascii=False, indent=2)}
 
 TASK:
-1. Write a punchy 2-3 sentence tailored summary based on base_summary, emphasizing aspects that match the job's required skills and responsibilities.
+1. Write a punchy 2-3 sentence tailored summary based on base_summary, emphasizing aspects that match the job's required skills and responsibilities. Do not copy completely the exact same wording from base_summary; rewrite in a new style with equivalent meaning and keeping some important elements present.
 2. For each company in professional, keep the EXACT SAME company/description/logo_path/roles structure from the input. INCLUDE ALL ROLES for each company — do not omit or combine any roles. Only reword bullet points to better match the job description keywords from the parsed JD, and reorder bullets within each role to prioritize those most relevant to the job's key responsibilities.
 3. For each group in academic, keep the EXACT SAME group/entries structure. For each entry, tailor the technologies, skills, and personal_development fields by reordering to prioritize job-relevant items, and provide a tailored_detail that incorporates these elements to emphasize job-relevant aspects using keywords from the parsed JD. If no clear connection exists, use the original values unchanged.
+4. Ensure tailored_professional + tailored_academic combined are not more than 1458 characters when serialized as JSON (excluding summary). If needed, shorten these sections only; do not trim tailored_summary.
    NOTE: If some groups are missing from the academic section, that is intentional (they are being processed separately).
 
 Output EXACTLY in this JSON format:
@@ -266,33 +269,68 @@ Output EXACTLY in this JSON format:
         }
     ]
 
-    try:
-        response = client.chat.completions.create(
-            model=MODEL_ID,
-            messages=messages,
-            max_tokens=5000
+    def combined_section_length(tailored: TailoredOutput) -> int:
+        compact = json.dumps(
+            {
+                "tailored_professional": [p.model_dump() for p in tailored.tailored_professional],
+                "tailored_academic": [g.model_dump() for g in tailored.tailored_academic],
+            },
+            ensure_ascii=False,
         )
-        raw = response.choices[0].message.content
+        return len(compact)
 
-        # Strip any accidental markdown fences
-        start = raw.find("{")
-        end = raw.rfind("}") + 1
-        cleaned = raw[start:end]
+    max_attempts = 3
+    attempt = 0
+    validated = None
+    raw = ""
 
-        parsed = json.loads(cleaned)
-        validated = TailoredOutput(**parsed)
+    while attempt < max_attempts:
+        attempt += 1
+        try:
+            response = client.chat.completions.create(
+                model=MODEL_ID,
+                messages=messages,
+                max_tokens=5000
+            )
+            raw = response.choices[0].message.content
 
-    except json.JSONDecodeError as e:
-        print(f"❌ AI returned invalid JSON: {e}")
-        print(f"Raw output was:\n{raw}")
-        return None
+            # Strip any accidental markdown fences
+            start = raw.find("{")
+            end = raw.rfind("}") + 1
+            cleaned = raw[start:end]
 
-    except ValidationError as e:
-        print(f"❌ AI output failed validation:\n{e}")
-        return None
+            parsed = json.loads(cleaned)
+            validated = TailoredOutput(**parsed)
 
-    except Exception as e:
-        print(f"❌ Unexpected error during AI call: {e}")
+            length = combined_section_length(validated)
+            if length > 1458:
+                print(f"⚠️ Attempt {attempt}: professional+academic length {length} exceeds 1458, retrying...")
+                if attempt >= max_attempts:
+                    print("⚠️ Max attempts reached. Keeping latest output but length constraint could not be satisfied.")
+                    break
+                continue
+
+            break
+
+        except json.JSONDecodeError as e:
+            print(f"❌ AI returned invalid JSON on attempt {attempt}: {e}")
+            print(f"Raw output was:\n{raw}")
+            if attempt >= max_attempts:
+                return None
+            continue
+
+        except ValidationError as e:
+            print(f"❌ AI output failed validation on attempt {attempt}:\n{e}")
+            if attempt >= max_attempts:
+                return None
+            continue
+
+        except Exception as e:
+            print(f"❌ Unexpected error during AI call: {e}")
+            return None
+
+    if validated is None:
+        print("❌ Tailoring failed after multiple attempts.")
         return None
 
     # If short mode is enabled, manually append International Experience group from master_cv
