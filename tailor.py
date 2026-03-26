@@ -23,6 +23,11 @@ TEMPLATE_PATH = "templates/resume_template.typ"
 DATA_OUTPUT_PATH = "templates/resume_data.json"
 PDF_OUTPUT_PATH = "output/tailored_cv.pdf"
 
+# --- behavior flags ---
+SHORTEN_INTERNATIONAL_EXPERIENCE = True  
+# if True, only institution/location are used for International Experience in academic entries
+INTERNATIONAL_FALLBACK_DETAIL = "Participated in cross-border academic programs while enhancing analytical and communication competence."
+
 # --- AI Client ---
 HF_TOKEN = os.getenv("LLM_API_KEY")
 if not HF_TOKEN:
@@ -41,15 +46,30 @@ class TailoredRole(BaseModel):
     dates: str
     bullets: list[str]
 
-class TailoredExperience(BaseModel):
+class TailoredProfessional(BaseModel):
     company: str
     description: str
     logo_path: str = ""
     roles: list[TailoredRole]
 
+class TailoredAcademicEntry(BaseModel):
+    institution: str
+    location: str
+    dates: str
+    outcome: str
+    tailored_detail: str
+    technologies: list[str]
+    skills: list[str]
+    personal_development: str
+
+class TailoredAcademicGroup(BaseModel):
+    group: str
+    entries: list[TailoredAcademicEntry]
+
 class TailoredOutput(BaseModel):
     tailored_summary: str
-    tailored_experience: list[TailoredExperience]
+    tailored_professional: list[TailoredProfessional]
+    tailored_academic: list[TailoredAcademicGroup]
 
 
 # =============================================================
@@ -140,9 +160,24 @@ def tailor_cv(master_cv: dict, job_description: str) -> TailoredOutput | None:
     parsed_jd = parse_job_description(job_description)
 
     # Only send what the AI is allowed to touch
+    academic_payload = master_cv.get("academic", [])
+    international_experience_group = None
+    
+    if SHORTEN_INTERNATIONAL_EXPERIENCE:
+        # Extract International Experience group to handle separately
+        academic_for_ai = []
+        for group in academic_payload:
+            if group.get("group", "").lower() == "international experience":
+                international_experience_group = group  # Store for later manual merge
+            else:
+                academic_for_ai.append(group)  # Send only other groups to AI
+    else:
+        academic_for_ai = academic_payload
+
     ai_input = {
         "base_summary": master_cv.get("base_summary"),
-        "experience": master_cv.get("experience")
+        "professional": master_cv.get("professional"),
+        "academic": academic_for_ai
     }
 
     messages = [
@@ -156,12 +191,23 @@ def tailor_cv(master_cv: dict, job_description: str) -> TailoredOutput | None:
                 "- NEVER invent facts, skills, or experience.\n"
                 "- Only reword and reorder existing content to emphasize job-matching keywords.\n"
                 "- If a bullet doesn't connect to the job, leave it unchanged.\n"
+                "- Try make at least one meaningful change per bullet to emphasize job relevance, only if the change is supported by the original CV and the job description.\n"
                 "- Prefer reordering bullets by relevance over heavy rephrasing.\n"
-                "- Use keywords from the job description that already appear in the CV bullets.\n\n"
+                "- Use keywords from the job description that already appear in the CV bullets.\n"
+                "- For academic details, reword the existing detail to emphasize job-relevant aspects, or use the original if no clear connection exists.\n"
+                "- For academic entries, tailor the technologies, skills, and personal_development fields to better match the job description by reordering or emphasizing relevant items. If unsure, keep the original lists/strings.\n\n"
                 "GOOD EXAMPLE:\n"
-                "[Add your own good example here: show original bullet → tailored bullet that emphasizes a job keyword without inventing anything]\n\n"
+                "Original bullet: 'Directed a team of 20 drivers to execute 130+ time-sensitive transportations.'\n"
+                "Tailored bullet: 'Directed 20-driver logistical operations for 130+ time-sensitive transports, applying data-connected scheduling and real-time delivery tracking to meet high-value procurement timelines.'\n\n"
                 "BAD EXAMPLE:\n"
-                "[Add your own bad example here: show original bullet → bad tailoring that invents a new skill or exaggerates]\n\n"
+                "Original bullet: 'Directed a team of 20 drivers to execute 130+ time-sensitive transportations.'\n"
+                "Tailored bullet: 'Led development of a new procurement machine learning platform in Python and GCP, achieving 35 percent cost savings.' (invented a platform not in original CV)\n\n"
+                "Academic Good Example:\n"
+                "Original academic input (international short-mode): institution='Kielce University', location='Kielce, Poland'\n"
+                "Tailored detail: 'Exchange program with focus on European procurement policy and cross-border analytics practice.'\n\n"
+                "Academic Bad Example:\n"
+                "Original academic input (international short-mode): institution='Kielce University', location='Kielce, Poland'\n"
+                "Tailored detail: 'Built a procurement AI pipeline using AWS and TensorFlow, producing 50 percent efficiency gain.' (invented project/tech)\n\n"
                 "Output ONLY valid JSON — no preamble, no markdown, no backticks."
             )
         },
@@ -176,12 +222,14 @@ MASTER CV DATA:
 
 TASK:
 1. Write a punchy 2-3 sentence tailored summary based on base_summary, emphasizing aspects that match the job's required skills and responsibilities.
-2. For each company in experience, keep the EXACT SAME company/description/logo_path/roles structure from the input. INCLUDE ALL ROLES for each company — do not omit or combine any roles. Only reword bullet points to better match the job description keywords from the parsed JD, and reorder bullets within each role to prioritize those most relevant to the job's key responsibilities.
+2. For each company in professional, keep the EXACT SAME company/description/logo_path/roles structure from the input. INCLUDE ALL ROLES for each company — do not omit or combine any roles. Only reword bullet points to better match the job description keywords from the parsed JD, and reorder bullets within each role to prioritize those most relevant to the job's key responsibilities.
+3. For each group in academic, keep the EXACT SAME group/entries structure. For each entry, tailor the technologies, skills, and personal_development fields by reordering to prioritize job-relevant items, and provide a tailored_detail that incorporates these elements to emphasize job-relevant aspects using keywords from the parsed JD. If no clear connection exists, use the original values unchanged.
+   NOTE: If some groups are missing from the academic section, that is intentional (they are being processed separately).
 
 Output EXACTLY in this JSON format:
 {{
   "tailored_summary": "...",
-  "tailored_experience": [
+  "tailored_professional": [
     {{
       "company": "...",
       "description": "...",
@@ -195,6 +243,23 @@ Output EXACTLY in this JSON format:
         }}
       ]
     }}
+  ],
+  "tailored_academic": [
+    {{
+      "group": "...",
+      "entries": [
+        {{
+          "institution": "...",
+          "location": "...",
+          "dates": "...",
+          "outcome": "...",
+          "tailored_detail": "...",
+          "technologies": ["...", "..."],
+          "skills": ["...", "..."],
+          "personal_development": "..."
+        }}
+      ]
+    }}
   ]
 }}
 """
@@ -205,7 +270,7 @@ Output EXACTLY in this JSON format:
         response = client.chat.completions.create(
             model=MODEL_ID,
             messages=messages,
-            max_tokens=1500
+            max_tokens=5000
         )
         raw = response.choices[0].message.content
 
@@ -216,7 +281,6 @@ Output EXACTLY in this JSON format:
 
         parsed = json.loads(cleaned)
         validated = TailoredOutput(**parsed)
-        return validated
 
     except json.JSONDecodeError as e:
         print(f"❌ AI returned invalid JSON: {e}")
@@ -230,6 +294,31 @@ Output EXACTLY in this JSON format:
     except Exception as e:
         print(f"❌ Unexpected error during AI call: {e}")
         return None
+
+    # If short mode is enabled, manually append International Experience group from master_cv
+    if SHORTEN_INTERNATIONAL_EXPERIENCE and international_experience_group:
+        # Convert dict entries to TailoredAcademicEntry objects
+        entries_list = []
+        for entry in international_experience_group.get("entries", []):
+            tailored_entry = TailoredAcademicEntry(
+                institution=entry.get("institution", ""),
+                location=entry.get("location", ""),
+                dates=entry.get("dates", ""),
+                outcome=entry.get("outcome", ""),
+                tailored_detail=entry.get("detail", ""),  # Use original detail as tailored_detail
+                technologies=entry.get("technologies", []),
+                skills=entry.get("skills", []),
+                personal_development=entry.get("personal_development", "")
+            )
+            entries_list.append(tailored_entry)
+        
+        international_group = TailoredAcademicGroup(
+            group=international_experience_group.get("group", ""),
+            entries=entries_list
+        )
+        validated.tailored_academic.append(international_group)
+    
+    return validated
 
 
 # =============================================================
@@ -259,14 +348,14 @@ def build_resume_data(tailored: TailoredOutput, master_cv: dict) -> dict:
     # Restore logo_path from master_cv — never trust AI output for file paths
     master_logo_map = {
         job["company"]: job.get("logo_path", "")
-        for job in master_cv.get("experience", [])
+        for job in master_cv.get("professional", [])
     }
-    experience = [e.model_dump() for e in tailored.tailored_experience]
-    for job in experience:
+    professional = [e.model_dump() for e in tailored.tailored_professional]
+    for job in professional:
         job["logo_path"] = master_logo_map.get(job["company"], "")
         
         # Restore additional role metadata from master_cv
-        master_job = next((mj for mj in master_cv.get("experience", []) if mj["company"] == job["company"]), None)
+        master_job = next((mj for mj in master_cv.get("professional", []) if mj["company"] == job["company"]), None)
         if master_job:
             master_roles = {f"{mr['role']}_{mr['dates']}": mr for mr in master_job.get("roles", [])}
             for role in job["roles"]:
@@ -277,11 +366,25 @@ def build_resume_data(tailored: TailoredOutput, master_cv: dict) -> dict:
                         if k not in ['bullets']:
                             role[k] = v
 
+    # Merge tailored academic details
+    academic = [g.model_dump() for g in tailored.tailored_academic]
+    for group in academic:
+        for entry in group["entries"]:
+            # Handle both tailored entries (from AI) and original entries (from master_cv)
+            if "tailored_detail" in entry:
+                entry["detail"] = entry.pop("tailored_detail")
+            # If short mode is enabled, mark international experience entries for compact rendering
+            if SHORTEN_INTERNATIONAL_EXPERIENCE and group.get("group", "").lower() == "international experience":
+                entry["short_international"] = True
+            else:
+                entry["short_international"] = False
+            # The technologies, skills, personal_development are already in the correct names
+
     return {
         "tailored_summary": tailored.tailored_summary,
-        "experience":        experience,
+        "professional":     professional,
         "contact":           contact,
-        "academic":          master_cv.get("academic", []),
+        "academic":          academic,
         "education":         education,
         "languages":         master_cv.get("languages", []),
         "skills":            master_cv.get("skills_inventory", {}),

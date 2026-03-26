@@ -136,7 +136,7 @@
   // === LEFT COLUMN CONTENT (no block wrapper!) ===
   [
     #section-heading("Professional Experience")
-    #for job in data.experience [
+    #for job in data.professional [
       #grid(
         columns: (1.2cm, 1fr),
         gutter: 5pt,
@@ -159,27 +159,41 @@
     
     #v(1pt)
     #section-heading("Academic Experience")
-    #for ex in data.academic [
-      #grid(
-        columns: (2.2cm, 1fr),
-        gutter: 1.5pt,
-        align(left)[
-          #text(size: 9pt, fill: rgb("#555555"))[#ex.dates #linebreak() #ex.location]
-        ],
-        align(left)[
-          #text(weight: "bold")[#ex.event]
-          #linebreak()
-          #text(style: "italic", size: 9pt, fill: rgb("#555555"))[#ex.section]
-          #linebreak()
-          #text(weight: "bold", fill: navy)[● #ex.role]
-          #pad(left: 0.4cm)[
-            #for bullet in ex.bullets [
-              - #bullet
-            ]
-          ]
-        ]
-      )
+    #for group in data.academic [
+      #text(weight: "bold")[#group.group]
       #v(1pt)
+      #for entry in group.entries [
+        #if entry.at("short_international", default: false) [
+          #grid(
+            columns: (2.2cm, 1fr),
+            gutter: 1.5pt,
+            align(left)[
+              #text(size: 9pt, fill: rgb("#555555"))[#entry.dates]
+            ],
+            align(left)[
+              #text(weight: "bold")[#entry.institution]
+              #linebreak()
+              #text(weight: "bold", fill: navy)[● #entry.outcome]
+            ]
+          )
+        ] else [
+          #grid(
+            columns: (2.2cm, 1fr),
+            gutter: 1.5pt,
+            align(left)[
+              #text(size: 9pt, fill: rgb("#555555"))[#entry.dates #linebreak() #entry.location]
+            ],
+            align(left)[
+              #text(weight: "bold")[#entry.institution]
+              #linebreak()
+              #text(weight: "bold", fill: navy)[● #entry.outcome]
+              #pad(left: 0.4cm)[
+                - #entry.detail
+              ]
+            ]
+          )
+        ]
+      ]
     ]
   ],
 
