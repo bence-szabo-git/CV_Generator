@@ -187,17 +187,9 @@ def tailor_cv(master_cv: dict, job_description: str) -> TailoredOutput | None:
                 "You are an expert CV tailor. Your goal is to make the CV more relevant to the job description "
                 "while maintaining 100% truthfulness and accuracy.\n\n"
                 "CRITICAL RULES:\n"
-                "- NEVER introduce technologies, numbers, or responsibilities not present in the original CV.\n"
-                "- NEVER invent facts, skills, or experience.\n"
-                "- Only reword and reorder existing content to emphasize job-matching keywords.\n"
-                "- If a bullet doesn't connect to the job, leave it unchanged.\n"
-                "- Try make at least one meaningful change per bullet to emphasize job relevance, only if the change is supported by the original CV and the job description.\n"
-                "- Prefer reordering bullets by relevance over heavy rephrasing.\n"
-                "- Use keywords from the job description that already appear in the CV bullets.\n"
-                "- For academic details, reword the existing detail to emphasize job-relevant aspects, or use the original if no clear connection exists.\n"
-                "- For academic entries, tailor the technologies, skills, and personal_development fields to better match the job description by reordering or emphasizing relevant items. If unsure, keep the original lists/strings.\n"
-                "- For tailored_summary, do not completely reuse the same sentences verbatim from base_summary; preserve some important elements while rewriting with new wording, structure and synonyms while keeping meaning identical.\n"
-                "- For tailored_professional and tailored_academic together, ensure the combined character count of all bullet points (professional) and all tailored_detail fields (academic) does not exceed 1458 characters. If it would exceed, shorten wording and trim verbosity in those fields only, preserving factual integrity.\n\n"
+                "- For the tailored_summary, maintain 100% truthfulness and accuracy, and it must include the fact that you are a master's student in AI & Analytics.\n"
+                "- For professional and academic sections, you have full authority to assess and reword content to best match the job description, including rephrasing, reordering, or condensing existing information. You may introduce minor inferred details if they logically follow from the original CV and enhance relevance, but avoid inventing entirely new facts, technologies, or experiences.\n"
+                "- Respect the 1458 character limit on combined bullet points (professional) and tailored_detail fields (academic).\n\n"
                 "GOOD EXAMPLE:\n"
                 "Original bullet: 'Directed a team of 20 drivers to execute 130+ time-sensitive transportations.'\n"
                 "Tailored bullet: 'Directed 20-driver logistical operations for 130+ time-sensitive transports, applying data-connected scheduling and real-time delivery tracking to meet high-value procurement timelines.'\n\n"
@@ -223,10 +215,9 @@ MASTER CV DATA:
 {json.dumps(ai_input, ensure_ascii=False, indent=2)}
 
 TASK:
-1. Write a punchy 2-3 sentence tailored summary based on base_summary, emphasizing aspects that match the job's required skills and responsibilities. Do not copy completely the exact same wording from base_summary; rewrite in a new style with equivalent meaning and keeping some important elements present.
+1. Write a punchy 2-3 sentence tailored summary based on base_summary, emphasizing aspects that match the job's required skills and responsibilities. Do not copy completely the exact same wording from base_summary; rewrite in a new style with equivalent meaning and keeping some important elements present. The summary must include the fact that you are a master's student in AI & Analytics.
 2. For each company in professional, keep the EXACT SAME company/description/logo_path/roles structure from the input. INCLUDE ALL ROLES for each company — do not omit or combine any roles. Only reword bullet points to better match the job description keywords from the parsed JD, and reorder bullets within each role to prioritize those most relevant to the job's key responsibilities.
-3. For each group in academic, keep the EXACT SAME group/entries structure. For each entry, tailor the technologies, skills, and personal_development fields by reordering to prioritize job-relevant items, and provide a tailored_detail that incorporates these elements to emphasize job-relevant aspects using keywords from the parsed JD. If no clear connection exists, use the original values unchanged.
-4. Ensure the combined length of all bullet points in tailored_professional and all tailored_detail fields in tailored_academic is not more than 1458 characters. If needed, shorten these fields only; do not trim tailored_summary.
+3. For each group in academic, keep the EXACT SAME group/entries structure. For each entry, tailor the outcome field to best highlight job-relevant achievements or skills, and provide a tailored_detail that incorporates these elements to emphasize job-relevant aspects using keywords from the parsed JD. Tailor the technologies, skills, and personal_development fields by reordering or emphasizing relevant items. You have full authority to assess and reword content here, including condensing or rephrasing for better fit, while respecting the character limit.
    NOTE: If some groups are missing from the academic section, that is intentional (they are being processed separately).
 
 Output EXACTLY in this JSON format:
