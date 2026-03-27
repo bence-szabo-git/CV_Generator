@@ -1,59 +1,25 @@
-The role will support the development and testing of advanced analytical and visualization tools that bring together complex procurement data into clear, decision-ready views.
+Are you looking for a working student job where you can do more than just watch? Or do you want to focus your thesis on something that is really in demand in the industry? Then Döhler is exactly what you're looking for! As a global producer, marketer and provider of technology-driven natural ingredients, ingredient systems and integrated solutions for the food and beverage industry, we are looking for people just like you, who are inquisitive and want to break the mould. People who are motivated to deliver only the best.
 
-About
+We are looking for a motivated working student (m/f/d) to support our team in data-driven product development projects.
 
-About the Group 
+Your Responsibilities
 
-The Procurement Group (PG) leads UNOPS’ effort to enable public procurement to be a catalyst for sustainable development. Based in Copenhagen but connecting all parts of the organization that contribute to sustainable procurement, we articulate the organization’s sustainable procurement practice strategy and provide thought leadership to position UNOPS with its partners. We foster innovative solutions for responsible supply chains, manage critical data and systems, drive digital innovation, develop systems to support effective purchasing, and drive our suppliers’ responsibility. Furthermore, PG is actively developing capacities for data-driven decision-making and foresight to enhance procurement outcomes. PG enables the operationalisation of the public procurement principles. It aims to bridge the gap between policy and implementation, and supports UNOPS teams worldwide through strategic advice, organization-wide knowledge-sharing, capacity building, insightful reporting and managerial oversight of UNOPS procurement activities. We promote procurement that not only delivers value for money, fairness and transparency, but also empowers institutions, supports local economies, and reduces environmental impact. Working across sectors and contexts, PG helps ensure that public procurement is used as a powerful lever to drive equitable development and long-term impact.
+Cleaning, structuring, and analysis of complex datasets
+Development of data models and analytical workflows
+Create visualizations and support the interpretation of results
+Work with cross-functional teams in R&D and analytics on practical use cases
+Document methods, code, and findings in a clear and structured way
 
- Role Purpose 
+Your profile
 
-The Procurement Intern – Data & Analytics will support the Procurement Group’s efforts to strengthen data-driven decision-making by improving the accessibility, quality, and usability of procurement data. The role contributes to the development of analytics products, dashboards, and automation/AI-supported workflows that provide timely insights into procurement performance, compliance, risks, and opportunities. Through this work, the intern will support continuous improvement in how procurement data is collected, analyzed, visualized, and used across the organization.
+Enrolled in a relevant Master’s program or in the final phase of a Bachelor’s degree (e.g. Food Science, Data Science, Chemistry, Statistics, or similar)
+Strong interest in data analysis and scientific work, ideally with an interest in food, or flavor / sensory science related topics
+Solid practical experience with R or Python, including hands-on work with data analysis (e.g. in projects, internships, or thesis work)
+Structured, independent, and reliable working style
+Basic communication skills in English (German is a plus)
 
-Upon completion of this internship, the Procurement Intern – Data & Analytics will have gained practical experience and knowledge in the following areas:
+Your Benefits
 
-Data Management: Understanding of data collection, cleaning, validation, and consolidation techniques from various sources.
-Data Analysis: Ability to identify trends, patterns, and variations in procurement data and contribute to the interpretation of findings.
-Data Visualization: Proficiency in developing and maintaining dashboards and reports using business intelligence/visualization tools.
-Digital Tools and Process Improvement: Exposure to the development and testing of data tools, including automation and AI-enabled capabilities.
-Research and Analytical Skills: Experience in conducting research projects related to procurement, supply chain, sustainability, data, and digital tools.
-Coordination and Communication: Enhanced skills in project coordination, communication with internal and external partners, and preparation of training materials.
-
-Functions / Key Results Expected
-
- Data management and quality
-Assist in the collation, cleaning, validation, and consolidation of procurement data from different sources to support accurate and consistent analysis. Support documentation of data definitions, assumptions, and basic quality checks.
- Analysis and insights
-Support analytical work to identify trends, patterns, and variations in procurement data and contribute to the interpretation and communication of findings for different audiences.
- Data visualization and reporting
-Assist with the development and maintenance of dashboards, reports and other data products, including the development of integrated views of procurement information to highlight specific offices/projects that require management attention and targeted early interventions (i.e. through heatmaps based on available data points). Support the preparation of recurring communications and data outputs for internal and external audiences.
- Digital tools and process improvement
-Support the development of data tools including responsible exploration and testing of automation or AI-enabled capabilities. Support the improvement of recurring data workflows and reporting processes (e.g. streamlining data preparation steps, improving templates, or testing new features/tools).
- Research and analysis
-Support research projects (e.g. data collection, desk research, market scanning), including trends and innovations related to procurement, supply chain, sustainability, data, and digital tools, as well as internal improvements.
- Coordination support
-Provide support in project coordination with internal and external partners. Support training events/initiatives including set-up, logistics, materials preparation, and implementation.
-
-Education Requirements 
-
-Required:
-
-The applicant should have completed a Minimum First level university degree (Bachelor’s or equivalent), or be enrolled in a postgraduate program or have graduated from such studies within three (3) years prior to the start date of the intern assignment.
-
-Desired:
-
-Area of study should preferably be in mathematics, statistics, data science, engineering, economics, business management, information systems, or related field.
-
-Requirements
-
-Experience Requirements 
-
-Desired:
-
-While no prior work experience is required, a strong interest and foundational skills in data analytics, reporting, and visualization as well as knowledge and interest in procurement, supply chain risk, and/or corporate reporting are an asset.
-Demonstrated ability to work with structured datasets, including basic data cleaning, validation, consolidation, and interpretation to support reliable analysis is desired.
-Ability to present data clearly through charts/tables for technical and non-technical audiences is desired. 
-Experience developing and maintaining dashboards in a business intelligence/visualization tool (e.g. Looker Studio, Power BI, Tableau, or equivalent) is a strong asset. 
-Familiarity with databases and data platforms (e.g. Google BigQuery) is desired. 
-Exposure to SQL and/or scripting for automation (e.g. Google Apps Script, Python) is desired. 
-Exposure to the use of AI-enabled tools to support data analysis and reporting is desired.
+The motivating working atmosphere, of a high-tech, innovative company
+The possibility to realize your own ideas
+The chance of experiencing new ways

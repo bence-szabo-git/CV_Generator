@@ -29,9 +29,9 @@ SHORTEN_INTERNATIONAL_EXPERIENCE = True
 INTERNATIONAL_FALLBACK_DETAIL = "Participated in cross-border academic programs while enhancing analytical and communication competence."
 
 # --- AI Client ---
-HF_TOKEN = os.getenv("LLM_API_KEY2")
+HF_TOKEN = os.getenv("LLM_API_KEY_H2")
 if not HF_TOKEN:
-    raise ValueError("LLM_API_KEY2 not found. Ensure it is set in Codespace Secrets.")
+    raise ValueError("LLM_API_KEY not found. Ensure it is set in Codespace Secrets.")
 
 client = InferenceClient(api_key=HF_TOKEN)
 
@@ -197,7 +197,7 @@ def tailor_cv(master_cv: dict, job_description: str) -> TailoredOutput | None:
                 "- For academic details, reword the existing detail to emphasize job-relevant aspects, or use the original if no clear connection exists.\n"
                 "- For academic entries, tailor the technologies, skills, and personal_development fields to better match the job description by reordering or emphasizing relevant items. If unsure, keep the original lists/strings.\n"
                 "- For tailored_summary, do not completely reuse the same sentences verbatim from base_summary; preserve some important elements while rewriting with new wording, structure and synonyms while keeping meaning identical.\n"
-                "- For tailored_professional and tailored_academic together, ensure the serialized total character count does not exceed 1458 characters. If it would exceed, shorten wording and trim verbosity in those sections only, preserving factual integrity.\n\n"
+                "- For tailored_professional and tailored_academic together, ensure the combined character count of all bullet points (professional) and all tailored_detail fields (academic) does not exceed 1458 characters. If it would exceed, shorten wording and trim verbosity in those fields only, preserving factual integrity.\n\n"
                 "GOOD EXAMPLE:\n"
                 "Original bullet: 'Directed a team of 20 drivers to execute 130+ time-sensitive transportations.'\n"
                 "Tailored bullet: 'Directed 20-driver logistical operations for 130+ time-sensitive transports, applying data-connected scheduling and real-time delivery tracking to meet high-value procurement timelines.'\n\n"
@@ -226,7 +226,7 @@ TASK:
 1. Write a punchy 2-3 sentence tailored summary based on base_summary, emphasizing aspects that match the job's required skills and responsibilities. Do not copy completely the exact same wording from base_summary; rewrite in a new style with equivalent meaning and keeping some important elements present.
 2. For each company in professional, keep the EXACT SAME company/description/logo_path/roles structure from the input. INCLUDE ALL ROLES for each company — do not omit or combine any roles. Only reword bullet points to better match the job description keywords from the parsed JD, and reorder bullets within each role to prioritize those most relevant to the job's key responsibilities.
 3. For each group in academic, keep the EXACT SAME group/entries structure. For each entry, tailor the technologies, skills, and personal_development fields by reordering to prioritize job-relevant items, and provide a tailored_detail that incorporates these elements to emphasize job-relevant aspects using keywords from the parsed JD. If no clear connection exists, use the original values unchanged.
-4. Ensure tailored_professional + tailored_academic combined are not more than 1458 characters when serialized as JSON (excluding summary). If needed, shorten these sections only; do not trim tailored_summary.
+4. Ensure the combined length of all bullet points in tailored_professional and all tailored_detail fields in tailored_academic is not more than 1458 characters. If needed, shorten these fields only; do not trim tailored_summary.
    NOTE: If some groups are missing from the academic section, that is intentional (they are being processed separately).
 
 Output EXACTLY in this JSON format:
@@ -270,14 +270,15 @@ Output EXACTLY in this JSON format:
     ]
 
     def combined_section_length(tailored: TailoredOutput) -> int:
-        compact = json.dumps(
-            {
-                "tailored_professional": [p.model_dump() for p in tailored.tailored_professional],
-                "tailored_academic": [g.model_dump() for g in tailored.tailored_academic],
-            },
-            ensure_ascii=False,
-        )
-        return len(compact)
+        total = 0
+        for prof in tailored.tailored_professional:
+            for role in prof.roles:
+                for bullet in role.bullets:
+                    total += len(bullet)
+        for acad_group in tailored.tailored_academic:
+            for entry in acad_group.entries:
+                total += len(entry.tailored_detail)
+        return total
 
     max_attempts = 3
     attempt = 0
