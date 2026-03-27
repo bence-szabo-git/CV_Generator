@@ -1,25 +1,39 @@
-Are you looking for a working student job where you can do more than just watch? Or do you want to focus your thesis on something that is really in demand in the industry? Then Döhler is exactly what you're looking for! As a global producer, marketer and provider of technology-driven natural ingredients, ingredient systems and integrated solutions for the food and beverage industry, we are looking for people just like you, who are inquisitive and want to break the mould. People who are motivated to deliver only the best.
+At IONOS, the leading European provider of cloud infrastructure, cloud services and hosting services, you will work together with a wide range of teams. We are characterized by open structures, a friendly working culture and flat hierarchies with a strong team spirit. We firmly believe that work and fun are compatible, and offer you the right environment for this. Our constant growth means that we are always looking for new colleagues. Become part of IONOS and grow with us.
 
-We are looking for a motivated working student (m/f/d) to support our team in data-driven product development projects.
+Are you interested in marketing trends, do you work with a high level of initiative and diligence and are you enthusiastic about analytical tasks? Are you communicative, like to share your ideas, think out of the box and feel comfortable in an international environment? Then join our team! To strengthen our marketing team, we are looking for a qualified, analytical and at the same time creatively thinking person with a keen eye for detail.
 
-Your Responsibilities
+Tasks
 
-Cleaning, structuring, and analysis of complex datasets
-Development of data models and analytical workflows
-Create visualizations and support the interpretation of results
-Work with cross-functional teams in R&D and analytics on practical use cases
-Document methods, code, and findings in a clear and structured way
+Assisting with the planning and implementation of lead generation and lead nurturing campaigns with HubSpot.
+Supporting the team in their day-to-day business in German and English.
+Assisting with the design and creation of emails in our email tool.
+Creating and editing forms, CTAs, and workflows in our HubSpot CRM.
+Editing lists and files in Google Workspace.
+Checking and responding to customer emails in the email inbox.
 
-Your profile
+Qualifications
 
-Enrolled in a relevant Master’s program or in the final phase of a Bachelor’s degree (e.g. Food Science, Data Science, Chemistry, Statistics, or similar)
-Strong interest in data analysis and scientific work, ideally with an interest in food, or flavor / sensory science related topics
-Solid practical experience with R or Python, including hands-on work with data analysis (e.g. in projects, internships, or thesis work)
-Structured, independent, and reliable working style
-Basic communication skills in English (German is a plus)
+You are studying digital or online marketing, business or media informatics, or a similar field. Ideally, you have some practical experience in online marketing or lead marketing/marketing automation.
+You have very good written and spoken English skills; additional language skills are an advantage.
+Good language and writing skills.
+Good knowledge of Google Workspace and web technologies.
+Interest in marketing, hosting, and technical topics in general.
+Commitment, ability to work in a team, initiative, and organizational skills.
+At least 6 months as a working student up to 20 hours/week.
 
-Your Benefits
+Benefits
 
-The motivating working atmosphere, of a high-tech, innovative company
-The possibility to realize your own ideas
-The chance of experiencing new ways
+Hybrid working model with home office option.
+Flexible working hours through trust-based working hours.
+At some locations a subsidized canteen and various free drinks.
+Modern office space with very good transport connections.
+Various employee discounts for activities and products.
+Employee events such as summer and winter parties, as well as workshops.
+Numerous training and development opportunities.
+Various health offers, such as sports and health courses.
+
+About IONOS
+
+IONOS is the leading European digitalization partner for small and medium-sized businesses (SMB). The company serves around six million customers and operates across 18 markets in Europe and North America, with its services being accessible worldwide. With its Web Presence & Productivity portfolio, IONOS acts as a 'one-stop shop' for all digitalization needs: from domains and web hosting to classic website builders and do-it-yourself solutions, from e-commerce to online marketing tools. In addition, the company offers Cloud Solutions to enterprises who are looking to move to the cloud as their businesses evolve.
+
+We value diversity and welcome all applications - regardless of, for example, gender, nationality, ethnic or social origin, religion, disability, age as well as sexual orientation and identity, physical characteristics, marital status or any other irrelevant factor subject to applicable law.
