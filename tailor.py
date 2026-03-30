@@ -14,7 +14,7 @@ import shutil
 import subprocess
 
 import yaml
-from pydantic import BaseModel, ValidationError
+from pydantic import BaseModel, ValidationError, validator
 from huggingface_hub import InferenceClient
 
 # --- Config ---
@@ -70,6 +70,15 @@ class TailoredOutput(BaseModel):
     tailored_summary: str
     tailored_professional: list[TailoredProfessional]
     tailored_academic: list[TailoredAcademicGroup]
+
+    @validator("tailored_summary")
+    def summary_length(cls, v: str) -> str:
+        summary_len = len(v.strip())
+        if summary_len < 360:
+            raise ValueError(f"tailored_summary must be at least 360 characters (got {summary_len})")
+        if summary_len > 370:
+            raise ValueError(f"tailored_summary must be at most 370 characters (got {summary_len})")
+        return v.strip()
 
 
 # =============================================================
@@ -223,10 +232,11 @@ MASTER CV DATA:
 {json.dumps(ai_input, ensure_ascii=False, indent=2)}
 
 TASK:
-1. Write a punchy 2-3 sentence tailored summary based on base_summary, emphasizing aspects that match the job's required skills and responsibilities. Do not copy completely the exact same wording from base_summary; rewrite in a new style with equivalent meaning and keeping some important elements present.
+1. Write a punchy 3-4 sentence tailored summary based on base_summary, emphasizing aspects that match the job's required skills and responsibilities. Do not copy completely the exact same wording from base_summary; rewrite in a new style with equivalent meaning and keeping some important elements present.
 2. For each company in professional, keep the EXACT SAME company/description/logo_path/roles structure from the input. INCLUDE ALL ROLES for each company — do not omit or combine any roles. Only reword bullet points to better match the job description keywords from the parsed JD, and reorder bullets within each role to prioritize those most relevant to the job's key responsibilities.
 3. For each group in academic, keep the EXACT SAME group/entries structure. For each entry, tailor the technologies, skills, and personal_development fields by reordering to prioritize job-relevant items, and provide a tailored_detail that incorporates these elements to emphasize job-relevant aspects using keywords from the parsed JD. If no clear connection exists, use the original values unchanged.
-4. Ensure the combined length of all bullet points in tailored_professional and all tailored_detail fields in tailored_academic is not more than 1458 characters. If needed, shorten these fields only; do not trim tailored_summary.
+4. Make sure tailored_summary is between 360 and 370 characters, inclusive. Adjust wording and sentence structure as needed to meet this range while preserving meaning.
+5. Ensure the combined length of all bullet points in tailored_professional and all tailored_detail fields in tailored_academic is not more than 1458 characters. If needed, shorten these fields only; do not trim tailored_summary.
    NOTE: If some groups are missing from the academic section, that is intentional (they are being processed separately).
 
 Output EXACTLY in this JSON format:

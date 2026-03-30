@@ -1,5 +1,5 @@
 {
-  "tailored_summary": "Driven to apply advanced analytical frameworks to support strategic growth and financial analysis, I am eager to contribute to Moët Hennessy's Finance Team. With experience in logistics operations and financial reporting, I am adept at managing budgets, producing reports, and supporting decision-making processes.",
+  "tailored_summary": "A master’s student in AI & Analytics with a strong background in logistics operations and financial analysis, I excel in strategic planning, budget management, and data-driven decision-making. My experience in managing high-volume resource allocation and logistics operations, combined with my analytical skills, makes me well-suited for supporting business controlling and financial analysis at Moët Hennessy.",
   "professional": [
     {
       "company": "VIBE Events Management",
@@ -11,8 +11,8 @@
           "location": "Târgu Mureş, Romania",
           "dates": "06/25 - 07/25",
           "bullets": [
-            "Directed a team of 20 drivers to execute 130+ time-sensitive transportations, optimizing logistics and maintaining cost neutrality.",
-            "Managed the logistics budget to support a 32% growth in attendance while ensuring financial stability."
+            "Directed a team of 20 drivers to execute 130+ time-sensitive transportations, ensuring robust logistics management and cost optimization.",
+            "Managed the logistics budget to support a 32% growth in attendance while maintaining cost neutrality, demonstrating strong financial acumen."
           ],
           "team_size": "[20 volunteer drivers + 2 secondary coordinators + 1 external logistics company + 5 stage coordinators]",
           "technical_depth": "[medium (logistics operations, resource allocation, stakeholder cooperation, budget management, scheduling, fast-paced problem-solving)]",
@@ -25,8 +25,8 @@
           "location": "Cluj-Napoca, Romania",
           "dates": "03/24 - 09/24",
           "bullets": [
-            "Oversaw end-to-end hospitality logistics for 500+ event staff and performers, ensuring 100% accuracy in transportation requests.",
-            "Co-authored 2+ EU funding applications and compiled 3 organizational reports to support strategic planning."
+            "Oversaw end-to-end hospitality logistics for 500+ event staff and performers, fulfilling 70+ unique performer requests with 100% accuracy.",
+            "Co-authored 2+ EU funding applications and compiled 3 organizational reports to support strategic planning, enhancing my ability to produce detailed financial and operational reports."
           ],
           "team_size": "[5 colleagues in the administrative team]",
           "technical_depth": "[low (administrative support, financial reporting, hospitality logistics)]",
@@ -40,7 +40,7 @@
           "dates": "03/23 - 09/23",
           "bullets": [
             "Administered financial reporting and budget tracking for a peak operational month, ensuring accurate financial statements.",
-            "Collaborated with a team of interns to develop and pitch new marketing initiatives."
+            "Collaborated with a team of fellow interns to develop and pitch new marketing initiatives, improving my teamwork and strategic planning skills."
           ],
           "team_size": "[3 interns, 1 supervisor from finance team, 3 finance team members]",
           "technical_depth": "[low (financial reporting, budget tracking, marketing collaboration)]",
@@ -113,7 +113,7 @@
             "sentiment analysis"
           ],
           "personal_development": "Advanced technical proficiency in ML and econometrics by executing data-driven projects on customer behavior and organizational networks; strengthened the ability to apply causal inference and ethical frameworks to AI models while managing complex data pipelines using Python, R, and DBeaver",
-          "detail": "Advanced technical proficiency in machine learning and econometrics by executing data-driven projects on customer behavior and organizational networks, strengthening the ability to apply causal inference and ethical frameworks to AI models while managing complex data pipelines using Python, R, and DBeaver.",
+          "detail": "Executed data-driven projects on customer behavior and organizational networks, applying machine learning frameworks and causal inference to enhance strategic planning and financial analysis capabilities.",
           "short_international": false
         }
       ]

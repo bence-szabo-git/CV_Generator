@@ -146,9 +146,9 @@ languages:
 # Skills — category: comma-separated string (unchanged)
 # ------------------------------------------------------------------
 skills_inventory:
-  Data Analysis: "Python, Webscraping, SQL, Google Workspace, Tableau, Power BI, R Studio"
+  Data Analysis: "Python, R Studio, SQL, Google Workspace, Tableau, Power BI, Webscraping"
   Analytical Frameworks: "Financial Reporting, Strategic Problem-Solving, Process Documentation"
-  Logistics: "Process & Workflow Mapping, Logistics Tracking, Inventory Management, Vendor Relations"
+  Logistics: "Process & Workflow Mapping, Logistics Tracking, Inventory & Stakeholder Management"
 
 # ------------------------------------------------------------------
 # Awards
