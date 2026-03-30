@@ -14,7 +14,7 @@ import shutil
 import subprocess
 
 import yaml
-from pydantic import BaseModel, ValidationError, field_validator, model_validator
+from pydantic import BaseModel, ValidationError, field_validator, model_validator, ConfigDict
 from huggingface_hub import InferenceClient
 
 # --- Config ---
@@ -67,6 +67,7 @@ class TailoredAcademicGroup(BaseModel):
     entries: list[TailoredAcademicEntry]
 
 class TailoredOutput(BaseModel):
+    model_config = ConfigDict(frozen=False)
     tailored_summary: str
     tailored_professional: list[TailoredProfessional]
     tailored_academic: list[TailoredAcademicGroup]
@@ -75,28 +76,26 @@ class TailoredOutput(BaseModel):
     def summary_length(cls, v: str) -> str:
         summary_len = len(v.strip())
         if summary_len < 340:
-            raise ValueError(f"tailored_summary must be at least 340 characters (got {summary_len})")
-        if summary_len > 380:
-            raise ValueError(f"tailored_summary must be at most 380 characters (got {summary_len})")
+            print(f"⚠️ tailored_summary length {summary_len} under 340; accepting output as-is")
+        elif summary_len > 380:
+            print(f"⚠️ tailored_summary length {summary_len} over 380; accepting output as-is")
         return v.strip()
 
     @model_validator(mode="after")
-    def combined_professional_academic_length(cls, values: "TailoredOutput") -> "TailoredOutput":
+    def combined_professional_academic_length(self) -> "TailoredOutput":
         total = 0
-        for prof in values.tailored_professional:
+        for prof in self.tailored_professional:
             for role in prof.roles:
                 for bullet in role.bullets:
                     total += len(bullet)
-        for acad_group in values.tailored_academic:
+        for acad_group in self.tailored_academic:
             for entry in acad_group.entries:
                 total += len(entry.tailored_detail)
 
-        if total > 1468:
-            raise ValueError(
-                f"combined professional+academic text length should be around 1450, got {total}"
-            )
+        if total > 1470:
+            print(f"⚠️ combined professional+academic text length {total} exceeds 1470; accepting output as-is")
 
-        return values
+        return self
 
 
 # =============================================================
@@ -171,6 +170,62 @@ def parse_job_description(job_description: str) -> dict:
         "key_responsibilities": responsibilities,
         "preferred_qualifications": preferred
     }
+
+
+def expand_summary(summary: str, parsed_jd: dict, base_summary: str) -> str:
+    """If summary is under 340 chars, calls the AI with a focused
+    single-task prompt to expand it to 340-380 characters.
+    Returns the expanded summary, or the original if expansion fails
+    or if the summary is already long enough.
+    """
+    if len(summary.strip()) >= 340:
+        return summary.strip()
+
+    print(f"⚠️ Summary too short ({len(summary.strip())} chars). Expanding...")
+
+    expansion_messages = [
+        {
+            "role": "system",
+            "content": (
+                "You are a professional CV writer. Your only task is to expand a summary to be "
+                "between 340 and 380 characters inclusive. "
+                "Do NOT add invented facts. Only expand using synonyms, additional adjectives, "
+                "or slightly more descriptive phrasing of what is already stated. "
+                "Output ONLY the expanded summary text — no JSON, no quotes, no preamble."
+            )
+        },
+        {
+            "role": "user",
+            "content": (
+                f"Current summary ({len(summary.strip())} characters — too short, needs to reach 340-380):\n"
+                f"{summary.strip()}\n\n"
+                f"Job keywords to weave in if not already present: "
+                f"{', '.join(parsed_jd.get('required_skills', [])[:5])}\n\n"
+                f"Expand the summary to 340-380 characters. "
+                f"Output ONLY the final summary text, nothing else."
+            )
+        }
+    ]
+
+    try:
+        response = client.chat.completions.create(
+            model=MODEL_ID,
+            messages=expansion_messages,
+            max_tokens=200
+        )
+        expanded = response.choices[0].message.content.strip()
+        expanded = expanded.strip('"').strip("'").strip()
+
+        if 340 <= len(expanded) <= 420:
+            print(f"✅ Summary expanded to {len(expanded)} chars.")
+            return expanded
+        else:
+            print(f"⚠️ Expansion produced {len(expanded)} chars — keeping original.")
+            return summary.strip()
+
+    except Exception as e:
+        print(f"⚠️ Summary expansion failed: {e}. Keeping original.")
+        return summary.strip()
 
 
 # =============================================================
@@ -253,8 +308,8 @@ TASK:
 1. Write a punchy 3-4 sentence tailored summary based on base_summary, emphasizing aspects that match the job's required skills and responsibilities. Do not copy completely the exact same wording from base_summary; rewrite in a new style with equivalent meaning and keeping some important elements present.
 2. For each company in professional, keep the EXACT SAME company/description/logo_path/roles structure from the input. INCLUDE ALL ROLES for each company — do not omit or combine any roles. Only reword bullet points to better match the job description keywords from the parsed JD, and reorder bullets within each role to prioritize those most relevant to the job's key responsibilities.
 3. For each group in academic, keep the EXACT SAME group/entries structure. For each entry, tailor the technologies, skills, and personal_development fields by reordering to prioritize job-relevant items, and provide a tailored_detail that incorporates these elements to emphasize job-relevant aspects using keywords from the parsed JD. If no clear connection exists, use the original values unchanged.
-4. Make sure tailored_summary is between 340 and 380 characters, inclusive. Adjust wording and sentence structure as needed to meet this range while preserving meaning.
-5. Ensure the combined length of all bullet points in tailored_professional and all tailored_detail fields in tailored_academic is not more than 1458 characters. If needed, shorten these fields only; do not trim tailored_summary.
+4. Write tailored_summary as exactly 3 complete sentences. Each sentence must be at least 2 clauses long, connected with a comma or conjunction. Do not write short sentences. The candidate is a master's student, has strong practical experience, and is committed to this role.
+5. Ensure the combined length of all bullet points in tailored_professional and all tailored_detail fields in tailored_academic is not more than 1460 characters. Aim for 1430±30 as much as possible; if needed, shorten these fields only; do not trim tailored_summary.
    NOTE: If some groups are missing from the academic section, that is intentional (they are being processed separately).
 
 Output EXACTLY in this JSON format:
@@ -332,8 +387,8 @@ Output EXACTLY in this JSON format:
             validated = TailoredOutput(**parsed)
 
             length = combined_section_length(validated)
-            if length > 1468:
-                print(f"⚠️ Attempt {attempt}: professional+academic length {length} exceeds 1468, retrying...")
+            if length < 1350 or length > 1470:
+                print(f"⚠️ Attempt {attempt}: professional+academic length {length} outside 1350..1470, retrying...")
                 if attempt >= max_attempts:
                     print("⚠️ Max attempts reached. Keeping latest output but length constraint could not be satisfied.")
                     break
@@ -384,6 +439,13 @@ Output EXACTLY in this JSON format:
             entries=entries_list
         )
         validated.tailored_academic.append(international_group)
+
+    # Post-process: enforce summary length independently of the main generation
+    validated.tailored_summary = expand_summary(
+        validated.tailored_summary,
+        parsed_jd,
+        master_cv.get("base_summary", "")
+    )
     
     return validated
 
