@@ -1,5 +1,5 @@
 {
-  "tailored_summary": "A master’s student in AI & Analytics with a strong background in logistics operations and financial analysis, I excel in strategic planning, budget management, and data-driven decision-making. My experience in managing high-volume resource allocation and logistics operations, combined with my analytical skills, makes me well-suited for supporting business controlling and financial analysis at Moët Hennessy.",
+  "tailored_summary": "Driven to apply advanced analytical frameworks to support strategic growth and financial analysis, I excel in managing high-volume resource allocation and overseeing logistics operations. My experience in budget management and data-driven decision-making aligns well with Moët Hennessy's mission to provide essential business analysis and support financial strategy.",
   "professional": [
     {
       "company": "VIBE Events Management",
@@ -11,7 +11,7 @@
           "location": "Târgu Mureş, Romania",
           "dates": "06/25 - 07/25",
           "bullets": [
-            "Directed a team of 20 drivers to execute 130+ time-sensitive transportations, ensuring robust logistics management and cost optimization.",
+            "Directed a team of 20 drivers to execute 130+ time-sensitive transportations, ensuring robust logistics management and cost neutrality.",
             "Managed the logistics budget to support a 32% growth in attendance while maintaining cost neutrality, demonstrating strong financial acumen."
           ],
           "team_size": "[20 volunteer drivers + 2 secondary coordinators + 1 external logistics company + 5 stage coordinators]",
@@ -26,7 +26,7 @@
           "dates": "03/24 - 09/24",
           "bullets": [
             "Oversaw end-to-end hospitality logistics for 500+ event staff and performers, fulfilling 70+ unique performer requests with 100% accuracy.",
-            "Co-authored 2+ EU funding applications and compiled 3 organizational reports to support strategic planning, enhancing my ability to produce detailed financial and operational reports."
+            "Co-authored 2+ EU funding applications and compiled 3 organizational reports to support strategic planning, showcasing analytical and reporting skills."
           ],
           "team_size": "[5 colleagues in the administrative team]",
           "technical_depth": "[low (administrative support, financial reporting, hospitality logistics)]",
@@ -39,8 +39,8 @@
           "location": "Cluj-Napoca, Romania",
           "dates": "03/23 - 09/23",
           "bullets": [
-            "Administered financial reporting and budget tracking for a peak operational month, ensuring accurate financial statements.",
-            "Collaborated with a team of fellow interns to develop and pitch new marketing initiatives, improving my teamwork and strategic planning skills."
+            "Administered financial reporting and budget tracking for a peak operational month, ensuring accurate financial oversight.",
+            "Collaborated with a team of fellow interns to develop and pitch new marketing initiatives, enhancing team-building and strategic planning skills."
           ],
           "team_size": "[3 interns, 1 supervisor from finance team, 3 finance team members]",
           "technical_depth": "[low (financial reporting, budget tracking, marketing collaboration)]",
@@ -113,7 +113,7 @@
             "sentiment analysis"
           ],
           "personal_development": "Advanced technical proficiency in ML and econometrics by executing data-driven projects on customer behavior and organizational networks; strengthened the ability to apply causal inference and ethical frameworks to AI models while managing complex data pipelines using Python, R, and DBeaver",
-          "detail": "Executed data-driven projects on customer behavior and organizational networks, applying machine learning frameworks and causal inference to enhance strategic planning and financial analysis capabilities.",
+          "detail": "Executed data-driven projects on customer behavior and organizational networks, advancing technical proficiency in machine learning and econometrics.",
           "short_international": false
         }
       ]
@@ -204,9 +204,9 @@
     }
   ],
   "skills": {
-    "Data Analysis": "Python, Webscraping, SQL, Google Workspace, Tableau, Power BI, R Studio",
+    "Data Analysis": "Python, R Studio, SQL, Google Workspace, Tableau, Power BI, Webscraping",
     "Analytical Frameworks": "Financial Reporting, Strategic Problem-Solving, Process Documentation",
-    "Logistics": "Process & Workflow Mapping, Logistics Tracking, Inventory Management, Vendor Relations"
+    "Logistics": "Process & Workflow Mapping, Logistics Tracking, Inventory & Stakeholder Management"
   },
   "awards": [
     "Bognár Family Hungarian Scholarships for the 2024-2025 Academic Year"

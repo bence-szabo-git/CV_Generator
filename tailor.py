@@ -86,9 +86,9 @@ class TailoredOutput(BaseModel):
 # =============================================================
 
 def load_data() -> tuple[dict, str]:
-    with open("data/master_cv.yaml", "r", encoding="utf-8") as f:
+    with open("templates/data/master_cv.yaml", "r", encoding="utf-8") as f:
         master_cv = yaml.safe_load(f)
-    with open("data/job_description.txt", "r", encoding="utf-8") as f:
+    with open("templates/data/job_description.txt", "r", encoding="utf-8") as f:
         job_description = f.read()
     return master_cv, job_description
 
