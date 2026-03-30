@@ -14,7 +14,7 @@ import shutil
 import subprocess
 
 import yaml
-from pydantic import BaseModel, ValidationError, validator
+from pydantic import BaseModel, ValidationError, field_validator, model_validator
 from huggingface_hub import InferenceClient
 
 # --- Config ---
@@ -71,14 +71,32 @@ class TailoredOutput(BaseModel):
     tailored_professional: list[TailoredProfessional]
     tailored_academic: list[TailoredAcademicGroup]
 
-    @validator("tailored_summary")
+    @field_validator("tailored_summary")
     def summary_length(cls, v: str) -> str:
         summary_len = len(v.strip())
-        if summary_len < 360:
-            raise ValueError(f"tailored_summary must be at least 360 characters (got {summary_len})")
-        if summary_len > 370:
-            raise ValueError(f"tailored_summary must be at most 370 characters (got {summary_len})")
+        if summary_len < 340:
+            raise ValueError(f"tailored_summary must be at least 340 characters (got {summary_len})")
+        if summary_len > 380:
+            raise ValueError(f"tailored_summary must be at most 380 characters (got {summary_len})")
         return v.strip()
+
+    @model_validator(mode="after")
+    def combined_professional_academic_length(cls, values: "TailoredOutput") -> "TailoredOutput":
+        total = 0
+        for prof in values.tailored_professional:
+            for role in prof.roles:
+                for bullet in role.bullets:
+                    total += len(bullet)
+        for acad_group in values.tailored_academic:
+            for entry in acad_group.entries:
+                total += len(entry.tailored_detail)
+
+        if total > 1468:
+            raise ValueError(
+                f"combined professional+academic text length should be around 1450, got {total}"
+            )
+
+        return values
 
 
 # =============================================================
@@ -235,7 +253,7 @@ TASK:
 1. Write a punchy 3-4 sentence tailored summary based on base_summary, emphasizing aspects that match the job's required skills and responsibilities. Do not copy completely the exact same wording from base_summary; rewrite in a new style with equivalent meaning and keeping some important elements present.
 2. For each company in professional, keep the EXACT SAME company/description/logo_path/roles structure from the input. INCLUDE ALL ROLES for each company — do not omit or combine any roles. Only reword bullet points to better match the job description keywords from the parsed JD, and reorder bullets within each role to prioritize those most relevant to the job's key responsibilities.
 3. For each group in academic, keep the EXACT SAME group/entries structure. For each entry, tailor the technologies, skills, and personal_development fields by reordering to prioritize job-relevant items, and provide a tailored_detail that incorporates these elements to emphasize job-relevant aspects using keywords from the parsed JD. If no clear connection exists, use the original values unchanged.
-4. Make sure tailored_summary is between 360 and 370 characters, inclusive. Adjust wording and sentence structure as needed to meet this range while preserving meaning.
+4. Make sure tailored_summary is between 340 and 380 characters, inclusive. Adjust wording and sentence structure as needed to meet this range while preserving meaning.
 5. Ensure the combined length of all bullet points in tailored_professional and all tailored_detail fields in tailored_academic is not more than 1458 characters. If needed, shorten these fields only; do not trim tailored_summary.
    NOTE: If some groups are missing from the academic section, that is intentional (they are being processed separately).
 
@@ -314,8 +332,8 @@ Output EXACTLY in this JSON format:
             validated = TailoredOutput(**parsed)
 
             length = combined_section_length(validated)
-            if length > 1458:
-                print(f"⚠️ Attempt {attempt}: professional+academic length {length} exceeds 1458, retrying...")
+            if length > 1468:
+                print(f"⚠️ Attempt {attempt}: professional+academic length {length} exceeds 1468, retrying...")
                 if attempt >= max_attempts:
                     print("⚠️ Max attempts reached. Keeping latest output but length constraint could not be satisfied.")
                     break
