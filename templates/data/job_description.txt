@@ -1,46 +1,26 @@
-About the Opportunity
-Within Driscoll’s, the Nursery is responsible for the production and supply of plant material to our growers. At our own nursery in Helenaveen, we produce over 40 million plants annually across 18 different sites, supplying our grower network throughout Europe and Africa.
-To ensure we deliver high-quality plants on time and in the right volumes, access to accurate and reliable data is essential. As a Nursery Intern, you will play a key role in this process.
-Responsibilities
-As an intern, you will support the Nursery team with data collection, analysis, and reporting. You will contribute to improving our processes and help drive the transition toward a data- and technology-driven organization.
+Tasks
 
-Your responsibilities include:
+Idea and concept development – Support in developing a global HR dashboard concept, including KPI structures, visualization logic, and reporting governance
+Best practice research – Analysis of current HR analytics standards, KPI frameworks, Power BI use cases, and modern data architectures
+Interface & Stakeholder Management – Close coordination with HR departments and IT to clarify requirements, data sources, and system boundaries; participation in workshops and interviews
+Establishment of Reporting Foundations – Support with data models (Power BI, DAX, Power Query), visualization concepts, and automation approaches (Power Automate)
+Documentation & Analysis – Structured preparation of findings, requirements, and concepts, as well as documentation of reporting and dashboard approaches
+Project Support & Organization – Collaboration on roadmaps, use cases, mockups, and data flow diagrams, as well as preparation of decision-making documents and support in establishing a consistent KPI framework
 
-Collecting cultivation data and maintaining performance dashboards
+Requirements
 
-Analyzing propagation (production) results
+Enrollment in Business Informatics, Business Administration, Data Analytics, HR Management, or a related field
+Initial experience with data analysis tools or HR processes is desirable
+Knowledge of Power BI (visualization, Power Query, DAX basics) as well as initial experience with Power Automate or a willingness to learn. Additionally, an interest in big data topics and global HR structures
+Ability to structure complex topics and present them in an understandable way
+Enjoyment of conceptual work and collaborating with various stakeholders
+Creative and analytical mindset, as well as a high degree of initiative
 
-Forecasting production output
+Application documents
 
-Creating daily and weekly performance reports
-
-Designing new dashboards and performance metrics
-
-Aligning with the Nursery team on current and future data needs
-
-Providing recommendations to improve data collection and reporting, including the use of AI
-
-Supporting the rollout of performance metrics across the European Nursery organization
-
-Candidate Profile
-You are an enthusiastic and analytical student with an interest in data, technology, and horticultural processes.
-
-Additionally:
-
-You are pursuing a Bachelor’s degree in horticulture, supply chain, business administration, or a related field
-You are in your 3rd or 4th year
-You have strong communication skills and are a team player
-You have a hands-on mindset and strong analytical skills
-You have an interest in data, technology, and production processes
-You are fluent in English, both written and spoken
-You have a valid driver’s license and your own transportation
-What do we offer?
-A 5–6 month internship within an international organization
-The opportunity to contribute to the development of our Nursery operations
-Hands-on experience with data, technology, and process improvement
-A dynamic and supportive team environment
-Broad international exposure and future career opportunities
-Your primary work location will be Helenaveen, with occasional meetings at our European headquarters in Breda.
-
-About Driscolls
-Driscoll's is the global market leader for fresh strawberries, blueberries, raspberries and blackberries. With more than 100 years of farming heritage and hundreds of independent growers around the world, Driscoll's is passionate about growing fresh, beautiful and delicious berries. Our values of humility, passion and trustworthiness have guided our mission to delight consumers around the world. Driscoll's exclusive patented berry varieties are developed through years of research using only natural breeding methods – meaning, no GMOs. From farm-to-table, we focus on delivering a high quality, premium berry experience with our many supply chain partners. Driscoll's is the trusted brand for Only the Finest Berries™.
+Complete resume
+Letter of motivation
+Certificate of enrollment
+Transcripts, especially current grade reports
+For mandatory internships: University or college guidelines specifying the minimum duration
+For non-EU citizens: Valid residence permit required
