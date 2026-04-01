@@ -10,6 +10,7 @@
 
 import os
 import json
+import re
 import shutil
 import subprocess
 
@@ -162,70 +163,30 @@ def parse_job_description(job_description: str) -> dict:
             preferred.append(line.lstrip('-• '))
             if len(preferred) >= 3:
                 break
-    
+
+    # Extract target company names from JD so the AI doesn't copy them into past experience.
+    target_companies = set()
+    for line in lines:
+        company_match = re.search(r'company\s*[:\-]\s*(.+)', line, re.I)
+        if company_match:
+            target_companies.add(company_match.group(1).strip().strip('.').strip())
+            continue
+        at_match = re.search(r'\b(?:at|for|with)\s+([A-Z][A-Za-z0-9&\-\. ]{2,})', line)
+        if at_match:
+            candidate = at_match.group(1).strip().strip('.').strip()
+            if len(candidate.split()) <= 6:
+                target_companies.add(candidate)
+
+    target_companies = {c for c in target_companies if c}
+
     return {
         "raw_description": job_description,
         "required_skills": skills,
         "team_context": team_context,
         "key_responsibilities": responsibilities,
-        "preferred_qualifications": preferred
+        "preferred_qualifications": preferred,
+        "target_companies": sorted(target_companies)
     }
-
-
-def expand_summary(summary: str, parsed_jd: dict, base_summary: str) -> str:
-    """If summary is under 340 chars, calls the AI with a focused
-    single-task prompt to expand it to 340-380 characters.
-    Returns the expanded summary, or the original if expansion fails
-    or if the summary is already long enough.
-    """
-    if len(summary.strip()) >= 340:
-        return summary.strip()
-
-    print(f"⚠️ Summary too short ({len(summary.strip())} chars). Expanding...")
-
-    expansion_messages = [
-        {
-            "role": "system",
-            "content": (
-                "You are a professional CV writer. Your only task is to expand a summary to be "
-                "between 340 and 380 characters inclusive. "
-                "Do NOT add invented facts. Only expand using synonyms, additional adjectives, "
-                "or slightly more descriptive phrasing of what is already stated. "
-                "Output ONLY the expanded summary text — no JSON, no quotes, no preamble."
-            )
-        },
-        {
-            "role": "user",
-            "content": (
-                f"Current summary ({len(summary.strip())} characters — too short, needs to reach 340-380):\n"
-                f"{summary.strip()}\n\n"
-                f"Job keywords to weave in if not already present: "
-                f"{', '.join(parsed_jd.get('required_skills', [])[:5])}\n\n"
-                f"Expand the summary to 340-380 characters. "
-                f"Output ONLY the final summary text, nothing else."
-            )
-        }
-    ]
-
-    try:
-        response = client.chat.completions.create(
-            model=MODEL_ID,
-            messages=expansion_messages,
-            max_tokens=200
-        )
-        expanded = response.choices[0].message.content.strip()
-        expanded = expanded.strip('"').strip("'").strip()
-
-        if 340 <= len(expanded) <= 420:
-            print(f"✅ Summary expanded to {len(expanded)} chars.")
-            return expanded
-        else:
-            print(f"⚠️ Expansion produced {len(expanded)} chars — keeping original.")
-            return summary.strip()
-
-    except Exception as e:
-        print(f"⚠️ Summary expansion failed: {e}. Keeping original.")
-        return summary.strip()
 
 
 # =============================================================
@@ -271,6 +232,7 @@ def tailor_cv(master_cv: dict, job_description: str) -> TailoredOutput | None:
                 "CRITICAL RULES:\n"
                 "- NEVER introduce technologies, numbers, or responsibilities not present in the original CV.\n"
                 "- NEVER invent facts, skills, or experience.\n"
+                "- Do not insert the company name from the job posting (target employer) into past professional experience bullets; keep past experience aligned with original CV employers only.\n"
                 "- Only reword and reorder existing content to emphasize job-matching keywords.\n"
                 "- If a bullet doesn't connect to the job, leave it unchanged.\n"
                 "- Try make at least one meaningful change per bullet to emphasize job relevance, only if the change is supported by the original CV and the job description.\n"
@@ -440,13 +402,7 @@ Output EXACTLY in this JSON format:
         )
         validated.tailored_academic.append(international_group)
 
-    # Post-process: enforce summary length independently of the main generation
-    validated.tailored_summary = expand_summary(
-        validated.tailored_summary,
-        parsed_jd,
-        master_cv.get("base_summary", "")
-    )
-    
+    # Final content is used as-is. Length is only flagged by validators.
     return validated
 
 
@@ -454,7 +410,21 @@ Output EXACTLY in this JSON format:
 # STEP 3 — MERGE AI OUTPUT WITH STATIC DATA
 # =============================================================
 
-def build_resume_data(tailored: TailoredOutput, master_cv: dict) -> dict:
+def _sanitize_company_names_from_bullets(bullets: list[str], forbidden_names: set[str]) -> list[str]:
+    sanitized = []
+    for bullet in bullets:
+        cleaned = bullet
+        for name in forbidden_names:
+            if not name:
+                continue
+            pattern = rf"\b{re.escape(name)}\b"
+            cleaned = re.sub(pattern, "", cleaned, flags=re.IGNORECASE)
+        cleaned = re.sub(r"\s{2,}", " ", cleaned).strip()
+        sanitized.append(cleaned)
+    return sanitized
+
+
+def build_resume_data(tailored: TailoredOutput, master_cv: dict, parsed_jd: dict) -> dict:
     """Combines AI-tailored fields with untouched static fields
     into a single dict that matches what resume_template.typ expects.
     Logo paths are always taken from master_cv — the AI doesn't know
@@ -480,6 +450,9 @@ def build_resume_data(tailored: TailoredOutput, master_cv: dict) -> dict:
         for job in master_cv.get("professional", [])
     }
     professional = [e.model_dump() for e in tailored.tailored_professional]
+    forbidden_company_names = set(job.get("company", "") for job in master_cv.get("professional", []))
+    forbidden_company_names.update(parsed_jd.get("target_companies", []))
+
     for job in professional:
         job["logo_path"] = master_logo_map.get(job["company"], "")
         
@@ -494,6 +467,10 @@ def build_resume_data(tailored: TailoredOutput, master_cv: dict) -> dict:
                     for k, v in master_roles[key].items():
                         if k not in ['bullets']:
                             role[k] = v
+
+        # Sanitize the AI-generated bullets to avoid invented company names.
+        for role in job.get("roles", []):
+            role["bullets"] = _sanitize_company_names_from_bullets(role.get("bullets", []), forbidden_company_names)
 
     # Merge tailored academic details
     academic = [g.model_dump() for g in tailored.tailored_academic]
@@ -569,7 +546,8 @@ if __name__ == "__main__":
         exit(1)
 
     print("🔗 Merging with static data...")
-    resume_data = build_resume_data(tailored, master_cv)
+    parsed_jd = parse_job_description(job_description)
+    resume_data = build_resume_data(tailored, master_cv, parsed_jd)
 
     print("🖨️  Compiling PDF...")
     compile_pdf(resume_data)

@@ -1,5 +1,5 @@
 {
-  "tailored_summary": "A master's student in AI & Analytics with a proven track record in managing high volume resource allocation and logistics operations, I am eager to apply my advanced analytical skills to support strategic competitive intelligence and data-driven insights at Siemens Healthineers. My experience in overseeing fleet scheduling and multi-stakeholder coordination, combined with my proficiency in data analysis and modern AI tools, positions me to excel in this role.",
+  "tailored_summary": "A master's student in AI & Analytics with a proven track record in managing high volume resource allocation and a strong background in logistics operations, I am enthusiastic about contributing to the development of Driscoll's Nursery operations through data collection, analysis, and reporting. My experience in overseeing fleet scheduling and multi-stakeholder coordination for time-sensitive projects aligns well with the need to ensure high-quality plant delivery on time and in the right volumes.",
   "professional": [
     {
       "company": "VIBE Events Management",
@@ -12,7 +12,7 @@
           "dates": "06/25 - 07/25",
           "bullets": [
             "Directed a team of 20 drivers to execute 130+ time-sensitive transportations, applying data-connected scheduling and real-time delivery tracking to meet high-value procurement timelines.",
-            "Managed the logistics budget to support a 32% growth in attendance while maintaining cost neutrality, leveraging data analysis and modern AI tools."
+            "Managed the logistics budget to support a 32% growth in attendance while maintaining cost neutrality, enhancing data-driven decision-making and financial oversight."
           ],
           "team_size": "[20 volunteer drivers + 2 secondary coordinators + 1 external logistics company + 5 stage coordinators]",
           "technical_depth": "[medium (logistics operations, resource allocation, stakeholder cooperation, budget management, scheduling, fast-paced problem-solving)]",
@@ -25,8 +25,8 @@
           "location": "Cluj-Napoca, Romania",
           "dates": "03/24 - 09/24",
           "bullets": [
-            "Oversaw end-to-end hospitality logistics for 500+ event staff and performers, fulfilling 70+ unique performer requests with 100% accuracy, using Excel and Google Workspace for efficient data management.",
-            "Co-authored 2+ EU funding applications and compiled 3 organizational reports to support strategic planning, demonstrating strong data analysis and presentation skills."
+            "Oversaw end-to-end hospitality logistics for 500+ event staff and performers, fulfilling 70+ unique performer requests with 100% accuracy, ensuring seamless coordination and data accuracy.",
+            "Co-authored 2+ EU funding applications and compiled 3 organizational reports to support strategic planning, demonstrating strong analytical and reporting skills."
           ],
           "team_size": "[5 colleagues in the administrative team]",
           "technical_depth": "[low (administrative support, financial reporting, hospitality logistics)]",
@@ -39,8 +39,8 @@
           "location": "Cluj-Napoca, Romania",
           "dates": "03/23 - 09/23",
           "bullets": [
-            "Administered financial reporting and budget tracking for a peak operational month, ensuring accurate and timely financial data.",
-            "Collaborated with a team of fellow interns to develop and pitch new marketing initiatives, enhancing my ability to work in a cross-functional team."
+            "Administered financial reporting and budget tracking for a peak operational month, providing critical insights for cost management and resource allocation.",
+            "Collaborated with a team of fellow interns to develop and pitch new marketing initiatives, fostering a data-driven approach to strategic planning."
           ],
           "team_size": "[3 interns, 1 supervisor from finance team, 3 finance team members]",
           "technical_depth": "[low (financial reporting, budget tracking, marketing collaboration)]",
@@ -84,7 +84,7 @@
             "data collection"
           ],
           "personal_development": "Awarded 2nd place speaker at scientific conference after developing and presenting a data-driven analysis of the Romanian book market, utilizing custom Python web scrapers to collect and analyze over 181,000 entries, enhancing skills in data analysis, market research, and academic presentation",
-          "detail": "Developed and presented a data-driven analysis of the Romanian book market using custom Python web scrapers, enhancing skills in data analysis, market research, and academic presentation.",
+          "detail": "Analyzed 181k+ entries to model Romanian book market trends using 3 custom Python web scrapers, enhancing skills in data analysis, market research, and academic presentation.",
           "short_international": false
         },
         {
@@ -113,7 +113,7 @@
             "sentiment analysis"
           ],
           "personal_development": "Advanced technical proficiency in ML and econometrics by executing data-driven projects on customer behavior and organizational networks; strengthened the ability to apply causal inference and ethical frameworks to AI models while managing complex data pipelines using Python, R, and DBeaver",
-          "detail": "Advanced technical proficiency in machine learning and econometrics by executing data-driven projects on customer behavior and organizational networks, including conjoint analysis and sentiment-driven network mapping, using Python, R Studio, and DBeaver.",
+          "detail": "Developed machine learning frameworks for market research and organizational analytics, including conjoint analysis for customer preferences and sentiment-driven network mapping, advancing technical proficiency in ML and econometrics.",
           "short_international": false
         }
       ]
