@@ -1,26 +1,54 @@
-Tasks
+Discover your impact with KUKA  KUKA offers an enormous spectrum of possibilities to advance your career, live your passions and unlock your potential. We´re one of the world's leading automation specialists, offering global opportunities in areas such as robotics, automation, logistics, software solutions and electronics. If you´re a go-getter, a visionary with bold ambitions and believer in collaboration and mutual respect, then you're poised for success here at KUKA.
 
-Idea and concept development – Support in developing a global HR dashboard concept, including KPI structures, visualization logic, and reporting governance
-Best practice research – Analysis of current HR analytics standards, KPI frameworks, Power BI use cases, and modern data architectures
-Interface & Stakeholder Management – Close coordination with HR departments and IT to clarify requirements, data sources, and system boundaries; participation in workshops and interviews
-Establishment of Reporting Foundations – Support with data models (Power BI, DAX, Power Query), visualization concepts, and automation approaches (Power Automate)
-Documentation & Analysis – Structured preparation of findings, requirements, and concepts, as well as documentation of reporting and dashboard approaches
-Project Support & Organization – Collaboration on roadmaps, use cases, mockups, and data flow diagrams, as well as preparation of decision-making documents and support in establishing a consistent KPI framework
+Responsibilities
 
-Requirements
+Make an impact
 
-Enrollment in Business Informatics, Business Administration, Data Analytics, HR Management, or a related field
-Initial experience with data analysis tools or HR processes is desirable
-Knowledge of Power BI (visualization, Power Query, DAX basics) as well as initial experience with Power Automate or a willingness to learn. Additionally, an interest in big data topics and global HR structures
-Ability to structure complex topics and present them in an understandable way
-Enjoyment of conceptual work and collaborating with various stakeholders
-Creative and analytical mindset, as well as a high degree of initiative
+Contribute to CI/CD pipelines (build, lint, test, quality gates) under mentorship; add checks and maintain pipeline health,
+Implement or extend API/unit/smoke/performance tests for critical scenarios; keep test data and environments tidy,
+Help maintain Sonar and other quality tools; fix or triage issues to keep quality gates green,
+Build small internal tools/CLI scripts/dashboards that reduce developer overhead (e.g., test scaffolding, report generation),
+Partner with engineers across teams to understand needs and propose automation or tooling improvements,
+Monitor and report quality/throughput trends (dashboards, simple queries) to support data‑driven decisions,
+Work in Agile/Scrum rituals; use Git effectively (PR hygiene, branching),
+Research modern AI‑based developer tools and quality‑automation solutions under guidance. 
 
-Application documents
+Application Requirements
 
-Complete resume
-Letter of motivation
-Certificate of enrollment
-Transcripts, especially current grade reports
-For mandatory internships: University or college guidelines specifying the minimum duration
-For non-EU citizens: Valid residence permit required
+What you need to succeed
+
+Active full‑time student status at a university (BSc or MSc),
+Able to work at least 24 hours per week,
+Available for a minimum of 8 months continuous internship,
+Able to code in C# (bonus: TypeScript / basic Vue.js),
+Familiar with Git and basic CI concepts,
+Basic understanding of software testing (unit, integration),
+Strong communication skills and a collaborative mindset,
+Comfortable working in Agile/Scrum environments,
+Fluent English language knowledge.
+
+Competitive internship salary
+
+Flexible working hours
+
+Home Office
+
+Great Team Spirit
+
+Our promise to you
+
+Our culture is deeply rooted in our passion to make robotics and automatic solutions accessible and easy to use. The result? We make peoples´ lives easier and safer, across the world. Diversity is the beating heart of our company - and we appreciate every single one of our bright and bold brainiacs. We encourage everyone to bring their full selves to work, fostering an environment where inspiration, expertise, and personal growth can flourish. Our collective goal? To achieve greatness and ignite innovative, positive change - not only within the automation industry but also beyond its boundaries. And in return, we prioritize creating a supportive, empowering, and caring environment for all.
+
+Perks And Benefits
+
+As part of our commitment to the well-being of our employees, we offer a range of comprehensive perks and benefits. From competitive salary packages to flexible work schedules, and professional development opportunities, we aim to provide a holistic approach to employee satisfaction. We believe in recognizing and appreciating the hard work and dedication of our workforce, and our perks reflect this commitment. Our goal is to create a workplace where employees feel valued, motivated, and inspired to contribute their best. Join us and enjoy the rewards of being part of a company that prioritizes the well-being and growth of its team.
+
+DEI (Diversity, Equity, and Inclusion) statement 
+
+Our core belief is in treating each other with kindness, an open mind, and mutual respect, creating an environment where everyone feels empowered to bring their authentic selves to work.
+
+KUKA is a company committed to equal opportunities. We manage every application with meticulous care and consideration - with a decision-making process that pays no heed to your origin, educational background, age, gender, sexual orientation, or your religious or political beliefs. If you join KUKA, you will have ample opportunities to share what motivates you and what defines your individuality.
+
+Join the journey!
+
+If you think a career with KUKA could be what you are looking for, we´d love to hear from you.
